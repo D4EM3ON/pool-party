@@ -7,6 +7,7 @@
 - Completion of the "contrat d'equipe"
 - Work on the "mandat d'equipe"
 - Initialization of the repository and CI for journalization
+- Start looking at code, start putting links to functions
 
 ## 2026-08-01
 ### Description:
