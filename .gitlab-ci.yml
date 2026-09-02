@@ -8,6 +8,7 @@
 stages:
 - test
 - secret-detection
+- journal
 sast:
   stage: test
 include:
@@ -17,3 +18,31 @@ variables:
   SECRET_DETECTION_ENABLED: 'true'
 secret_detection:
   stage: secret-detection
+
+extract-journal:
+  stage: journal
+  image: python:3.12
+  variables:
+    GIT_DEPTH: '0'
+  rules:
+  - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    when: never
+  - if: $CI_COMMIT_BRANCH
+  script:
+  - git config --global --add safe.directory "$CI_PROJECT_DIR"
+  - python scripts/extract_journal.py
+  - git add extracted_hours.csv extracted_journal.md
+  - |
+    if git diff --cached --quiet; then
+      echo "Extracted files already up to date."
+      exit 0
+    fi
+    if [ -z "$JOURNAL_TOKEN" ]; then
+      echo "JOURNAL_TOKEN is not set: cannot push the regenerated files." >&2
+      exit 1
+    fi
+    git -c user.name="GitLab CI" -c user.email="ci@noreply.usherbrooke.ca" \
+      commit -m "chore: regenerate extracted journal and hours [skip ci]"
+    # GitLab checks out a detached HEAD, hence the explicit HEAD:<branch> refspec.
+    git push "https://oauth2:${JOURNAL_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" \
+      "HEAD:${CI_COMMIT_BRANCH}"
