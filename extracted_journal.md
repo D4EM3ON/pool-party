@@ -1,6 +1,11 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 18 h (6.7 %)
+## Total hours currently worked : 20 h (7.4 %)
+
+## 2026-09-04
+### Description:
+- Continuing adding links to table
+- Meeting with Pr. Hocking
 
 ## 2026-09-02
 ### Description:
