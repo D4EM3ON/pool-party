@@ -9,7 +9,7 @@
 - Start working on table, added results for `stats`, `monotone`, `directlabels` packages
 
 ### Annex:
-![alt text](image.png)
+![alt text](entries/image.png)
 
 ## 2026-09-04: 2h
 ### Description:
