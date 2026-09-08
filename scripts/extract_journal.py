@@ -162,7 +162,12 @@ def render_journal_md(entries: list[Entry]) -> str:
         "",
     ]
     for entry in ordered:
-        parts += [f"## {entry.date}", "### Description:", entry.description, ""]
+        parts += [
+            f"## {entry.date}: {format_hours(entry.hours)}h",
+            "### Description:",
+            entry.description,
+            "",
+        ]
         if entry.appendix:
             parts += ["### Annex:", entry.appendix, ""]
     return "\n".join(parts)
