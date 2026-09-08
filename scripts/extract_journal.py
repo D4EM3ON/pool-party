@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Regenerate extracted_hours.csv and extracted_journal.md from entries/*.md.
+"""
+* File generated mainly via Claude
+
+Regenerate extracted_hours.csv and extracted_journal.md from entries/*.md.
 
 Every work session is logged as one markdown file in entries/ following
 entries/_template.md. This script is the single source of truth for the two
@@ -14,6 +17,7 @@ from __future__ import annotations
 
 import csv
 import io
+import posixpath
 import re
 import sys
 from dataclasses import dataclass
@@ -32,6 +36,16 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 H1_RE = re.compile(r"^#\s+(.*?)\s*$")
 HOURS_RE = re.compile(r"^##\s*Hours worked\s*:\s*(.*?)\s*$", re.IGNORECASE)
 HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
+
+# ![alt](target "title") and <img src="target">, target captured on its own so
+# it can be rewritten without touching the alt text or the trailing title.
+MD_IMAGE_RE = re.compile(r"(!\[[^\]]*\]\(\s*<?)([^\s<>()]+)(>?[^)]*\))")
+HTML_IMAGE_RE = re.compile(
+    r"""(<img\b[^>]*?\bsrc\s*=\s*["'])([^"']+)(["'])""", re.IGNORECASE
+)
+# A scheme, a protocol-relative or root-relative path, or a bare fragment:
+# already resolvable as written, so it must be left alone.
+ABSOLUTE_TARGET_RE = re.compile(r"^(?:[A-Za-z][A-Za-z0-9+.-]*:|//|/|#)")
 
 # Section heading a slice of body text starts at, matched case-insensitively.
 DESCRIPTION_HEADINGS = ("description",)
@@ -84,8 +98,26 @@ def extract_section(lines: list[str], names: tuple[str, ...]) -> str:
     return "\n".join(collected).strip("\n")
 
 
+def rewrite_image_paths(text: str, path: Path) -> str:
+    """Re-root an entry's relative image paths at the repo root.
+
+    Entries live in entries/ but the rendered journal sits at the repo root, so
+    `![](image.png)` has to become `![](entries/image.png)` to keep resolving.
+    """
+    base = path.parent.relative_to(REPO_ROOT).as_posix()
+
+    def relocate(match: re.Match[str]) -> str:
+        prefix, target, suffix = match.groups()
+        if ABSOLUTE_TARGET_RE.match(target):
+            return match.group(0)
+        return f"{prefix}{posixpath.normpath(f'{base}/{target}')}{suffix}"
+
+    return HTML_IMAGE_RE.sub(relocate, MD_IMAGE_RE.sub(relocate, text))
+
+
 def parse_entry(path: Path) -> Entry:
     text = HTML_COMMENT_RE.sub("", path.read_text(encoding="utf-8"))
+    text = rewrite_image_paths(text, path)
     lines = text.splitlines()
 
     date = None

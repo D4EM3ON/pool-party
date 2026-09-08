@@ -1,6 +1,0 @@
-{
-    "[r]": {
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "REditorSupport.r"
-    }
-}

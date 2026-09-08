@@ -44,4 +44,8 @@ ares <- atime::atime(
 )
 plot(ares)
 
+# Plots only need the measurements without the result column
+# (dropped for space savings)
+ares$measurements[, result := NULL]
+
 saveRDS(ares, glue("src/r/{package_names}/data/figure-data.rds"))

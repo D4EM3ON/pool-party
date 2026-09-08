@@ -7,3 +7,6 @@ builds/
 
 # Images
 data/figures/
+
+# Editor
+.vscode/
