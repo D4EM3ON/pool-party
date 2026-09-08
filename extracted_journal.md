@@ -1,6 +1,15 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 20 h (7.4 %)
+## Total hours currently worked : 24 h (8.9 %)
+
+## 2026-09-07: 4h
+### Description:
+- Implement mirror for GitHub
+- Implement partitioning, template for adding functions, reproducibility
+- Start working on table, added results for `stats`, `monotone`, `directlabels` packages
+
+### Annex:
+![alt text](image.png)
 
 ## 2026-09-04: 2h
 ### Description:
