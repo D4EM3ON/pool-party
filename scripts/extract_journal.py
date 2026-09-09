@@ -16,6 +16,7 @@ Usage:
 from __future__ import annotations
 
 import csv
+from datetime import date, datetime
 import io
 import posixpath
 import re
@@ -55,7 +56,7 @@ APPENDIX_HEADINGS = ("appendix", "annex", "annexe")
 @dataclass
 class Entry:
     path: Path
-    date: str
+    date: date
     hours: float
     description: str
     appendix: str
@@ -120,16 +121,16 @@ def parse_entry(path: Path) -> Entry:
     text = rewrite_image_paths(text, path)
     lines = text.splitlines()
 
-    date = None
+    date_text = None
     for line in lines:
         match = H1_RE.match(line)
         if match:
-            date = match.group(1)
+            date_text = match.group(1)
             break
-    if date is None:
+    if date_text is None:
         fail(path, "no '# yyyy-mm-dd' heading found")
-    if not DATE_RE.match(date):
-        fail(path, f"heading '# {date}' is not a yyyy-mm-dd date")
+    if not DATE_RE.match(date_text):
+        fail(path, f"heading '# {date_text}' is not a yyyy-mm-dd date")
 
     hours = None
     for line in lines:
@@ -146,7 +147,7 @@ def parse_entry(path: Path) -> Entry:
 
     return Entry(
         path=path,
-        date=date,
+        date=datetime.strptime(date_text, "%Y-%m-%d").date(),
         hours=hours,
         description=description,
         appendix=extract_section(lines, APPENDIX_HEADINGS),
@@ -185,12 +186,19 @@ def render_journal_md(entries: list[Entry]) -> str:
     # Newest first: the most recent work reads at the top of the journal.
     ordered = sorted(entries, key=lambda e: (e.date, e.path.name), reverse=True)
     total = sum(entry.hours for entry in entries)
+    current_week = date.today().isocalendar()[:2]
+    weekly_total = sum(
+        entry.hours for entry in entries
+        if entry.date.isocalendar()[:2] == current_week
+    )
     percent = total / TARGET_HOURS * 100 if TARGET_HOURS else 0.0
 
     parts = [
         JOURNAL_TITLE,
         "",
         f"## Total hours currently worked : {format_hours(total)} h ({percent:.1f} %)",
+        "",
+        f"## Total hours worked this week : {format_hours(weekly_total)} h",
         "",
     ]
     for entry in ordered:

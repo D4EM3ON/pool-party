@@ -2,6 +2,8 @@
 
 ## Total hours currently worked : 26 h (9.6 %)
 
+## Total hours worked this week : 6 h
+
 ## 2026-09-08: 2h
 ### Description:
 - Add weights and bounds to all columns in table
