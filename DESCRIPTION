@@ -1,0 +1,28 @@
+Package: pool-party
+Type: Package
+Title: PAVA algorithm implementations analysis
+Version: 0.0.1
+Imports:
+    atime (>= 2026.4.2),
+    cir,
+    clue,
+    data.table,
+    directlabels (>= 2026.8.27),
+    fdrtool,
+    ggplot2,
+    glue,
+    Iso,
+    isotone,
+    logcondens,
+    monotone,
+    monreg,
+    quadprog,
+    reticulate,
+    sandwich,
+    smacof
+Suggests:
+    intcox,
+    SAGx
+Note: 'intcox' and 'SAGx' are no longer distributed by CRAN and
+    Bioconductor; see INSTALLATION.md for how to install them from the
+    archives.

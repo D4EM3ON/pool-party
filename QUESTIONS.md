@@ -1,0 +1,2 @@
+- Some take x and y - what do we give for y values? (monreg::monreg)
+- Some take z and y - do we take for granted that z will be the same as x? (isotone::gpava)
