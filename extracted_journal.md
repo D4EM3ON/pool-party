@@ -1,6 +1,14 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 24 h (8.9 %)
+## Total hours currently worked : 26 h (9.6 %)
+
+## 2026-09-08: 2h
+### Description:
+- Add weights and bounds to all columns in table
+- Add `cir`, `iso`, as well as `clue` PAVA functions results
+
+### Annex:
+![alt text](entries/image-1.png)
 
 ## 2026-09-07: 4h
 ### Description:
