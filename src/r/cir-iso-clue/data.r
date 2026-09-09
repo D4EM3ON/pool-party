@@ -2,10 +2,12 @@ library(data.table)
 library(ggplot2)
 library(glue)
 
-package_names <- "<FUNCTION-NAMES>"
+package_names <- "cir-iso-clue"
 
 isotonic_functions <- list(
-  # functions like `stats = function(x) isoreg(x)$yf
+  cir = cir::cirPAVA,
+  iso = Iso:::pava,
+  clue = clue:::pava
 )
 (expr_list <- atime::atime_grid(
   list(PKG = names(isotonic_functions)),

@@ -2,7 +2,7 @@ library(data.table)
 library(ggplot2)
 library(glue)
 
-package_names <- "<PACKAGE-NAMES>"
+package_names <- "cir-iso-clue"
 figure_path <- glue("src/r/{package_names}/figures")
 
 atime::atime
