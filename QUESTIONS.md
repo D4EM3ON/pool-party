@@ -1,2 +1,4 @@
 - Some take x and y - what do we give for y values? (monreg::monreg)
+  - Recherche si monreg cest vraiment ce qu'on veut
 - Some take z and y - do we take for granted that z will be the same as x? (isotone::gpava)
+  - Done
