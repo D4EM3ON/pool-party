@@ -1,8 +1,22 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 39 h (14.4 %)
+## Total hours currently worked : 42 h (15.6 %)
 
-## Total hours worked this week : 14 h
+## Total hours worked this week : 2 h
+
+## 2026-09-15: 2h
+### Description:
+- Work on project plan
+- Add questions to do to TODO.md
+- Add results for isotone
+
+### Annex:
+### `isotone`
+![alt text](entries/image-9.png)
+
+## 2026-09-11: 1h
+### Description:
+- Rencontre avec Pr. Hocking (jaser du mandat de projet et questions overall que j'avais)
 
 ## 2026-09-09: 7h
 ### Description:
