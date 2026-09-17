@@ -1,8 +1,43 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 42 h (15.6 %)
+## Total hours currently worked : 46.5 h (17.2 %)
 
-## Total hours worked this week : 2 h
+## Total hours worked this week : 6.5 h
+
+## 2026-09-17: 3h
+### Description:
+- Add full results after rerunning everything
+
+### Annex:
+### Full results (current-day, latest versions)
+
+`sklearn/scipy`
+![alt text](entries/image-10.png)
+
+`cir/iso/clue/sagx`
+![alt text](entries/image-11.png)
+
+`fdrtool`
+![alt text](entries/image-12.png)
+
+`intcox`
+![alt text](entries/image-13.png)
+
+`isotone`
+![alt text](entries/image-14.png)
+
+`logcondens`
+![alt text](entries/image-15.png)
+
+`sandwich`
+![alt text](entries/image-16.png)
+
+`stats/directlabels/monotone/smacof`
+![alt text](entries/image-17.png)
+
+## 2026-09-16: 1.5h
+### Description:
+- Start checking if all functions return correct results
 
 ## 2026-09-15: 2h
 ### Description:
