@@ -4,17 +4,6 @@ library(glue)
 
 package_names <- "intcox"
 
-isotonic_functions <- list(
-  intcox = intcox:::intcox.pavaC
-)
-(expr_list <- atime::atime_grid(
-  list(PKG = names(isotonic_functions)),
-  isoreg = {
-    l_vec <- cumsum(c(lower_bound, h_vec[-N]) + h_vec)
-    fun <- isotonic_functions[[PKG]]
-    fun(weights, target - l_vec) + l_vec
-  }
-))
 ares <- atime::atime(
   N = 10^seq(0, 7, by = 0.2),
   setup = {
@@ -26,8 +15,13 @@ ares <- atime::atime(
     upper_bound <- 200
     weights <- rep(1, N)
   },
-  expr.list = expr_list,
-  "solve.QP PKG=quadprog" = {
+  intcox = {
+    l_vec <- cumsum(c(lower_bound, h_vec[-N]) + h_vec)
+    data.table(
+      solution = list(intcox:::intcox.pavaC(weights, target - l_vec) + l_vec)
+    )
+  },
+  quadprog = {
     k <- length(target)
     identity <- diag(rep(1, k))
     ik <- diag(rep(1, k - 1))
@@ -36,15 +30,22 @@ ares <- atime::atime(
     y_lo <- target - half_size
     b0 <- (y_up - target)[-k] + (target - y_lo)[-1]
     sol <- quadprog::solve.QP(identity, target, a, b0)
-    data.table(iteration = sol$iterations[1], solution = list(sol$solution))
+    data.table(solution = list(sol$solution))
   },
   seconds.limit = 1,
   result = TRUE
 )
 plot(ares)
 
-# Plots only need the measurements without the result column
-# (dropped for space savings)
-ares$measurements[, result := NULL]
+# Comparison of solutions - make sure the solutions match
+cmp <- dcast(
+  ares$measurements, N ~ expr.name, value.var = "solution"
+)[
+  !sapply(quadprog, is.null)
+][, ok := mapply(function(i, q) isTRUE(all.equal(i, q)), intcox, quadprog)]
+stopifnot(nrow(cmp) > 0, all(cmp$ok))
 
+# Plots only need the measurements without the result and solution columns
+# (dropped for space savings)
+ares$measurements[, c("result", "solution") := NULL]
 saveRDS(ares, glue("src/r/{package_names}/data/figure-data.rds"))

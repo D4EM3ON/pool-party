@@ -24,7 +24,6 @@ dev.off()
 rfuns <- list(
   N = function(x) log10(x),
   "N log N" = function(x) log10(x) + log10(log10(x)),
-  "N^1.5" = function(x) 1.5 * log10(x),
   "N^2" = function(x) 2 * log10(x),
   "N^3" = function(x) 3 * log10(x) # add more functions here if need be
 )
