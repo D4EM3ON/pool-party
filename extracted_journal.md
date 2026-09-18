@@ -1,12 +1,51 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 46.5 h (17.2 %)
+## Total hours currently worked : 53 h (19.6 %)
 
-## Total hours worked this week : 6.5 h
+## Total hours worked this week : 13 h
 
-## 2026-09-17: 3h
+## 2026-09-18: 6h
+### Description:
+- Wrap up switching over to old function
+- Add all results for old packages, both here and in the README
+- Meeting with Pr. Hocking
+- Start reading paper
+
+### Annex:
+### Full results for older packages
+
+#### `sklearn/scipy`
+scipy is not present here, as it's `isotonic_regression` function arrived later.
+![alt text](entries/image-23.png)
+
+#### `cir/iso/clue/sagx`
+`SAGx` is not present in these results, as it was already a deprecated package
+![alt text](entries/image-24.png)
+
+#### `fdrtool`
+![alt text](entries/image-22.png)
+
+#### `intcox`
+Not present here, as intcox was already a deprecated package
+
+#### `isotone`
+![alt text](entries/image-21.png)
+
+#### `logcondens`
+![alt text](entries/image-20.png)
+
+#### `sandwich`
+![alt text](entries/image-19.png)
+#### `stats/directlabels/monotone/smacof`
+`directlabels` is not present here, as it's `isoreg` function only appeared in `directlabels` release 2026.8.27
+
+![alt text](entries/image-18.png)
+
+## 2026-09-17: 3.5h
 ### Description:
 - Add full results after rerunning everything
+- Add installation instructions for pre-2022 packages
+- Add isoreg file from 2021 (as it is shipped directly with R)
 
 ### Annex:
 ### Full results (current-day, latest versions)
