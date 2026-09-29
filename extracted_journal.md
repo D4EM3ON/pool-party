@@ -1,8 +1,27 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 53 h (19.6 %)
+## Total hours currently worked : 64 h (23.7 %)
 
-## Total hours worked this week : 13 h
+## Total hours worked this week : 4 h
+
+## 2026-09-29: 4h
+### Description:
+- Wrap up versions
+
+## 2026-09-25: 3h
+### Description:
+- Meeting with Pr. Hocking
+- Continue working on versions and dates for documented VERSIONS.md
+
+## 2026-09-24: 2h
+### Description:
+- Check all documentation and add if complexity is documented for each function
+- Look at monreg, what it is, if it is relevant (it is not, it does not calculate the same thing as the others)
+- Start documenting every version and every year
+
+## 2026-09-23: 2h
+### Description:
+- Reading of paper O(n) 2022, understanding, answering questions and asking others
 
 ## 2026-09-18: 6h
 ### Description:
