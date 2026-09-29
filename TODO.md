@@ -1,27 +1,39 @@
-[ ] Lire le papier 2022 au grand complet !! 
+# Todo
 
-[ ] Ecrire a Frank du papier de 2022 pour demander les trucs supplementaires, + lui demander s'il y a des algos qui sont dans le pire cas quadratique et dans le meilleur cas lineaire
-- A tes connaissances, ecq tous les algos ont la meme complexite asymptotique dans le pire et dans le meilleur cas, ou connais tu un algo qui est lineaire dans le meilleur et quadratique dans le pire cas.
+- [ ] Ecrire a Frank du papier de 2022 pour demander les trucs supplementaires, + lui demander s'il y a des algos qui sont dans le pire cas quadratique et dans le meilleur cas lineaire
+  - "A tes connaissances, ecq tous les algos ont la meme complexite asymptotique dans le pire et dans le meilleur cas, ou connais tu un algo qui est lineaire dans le meilleur et quadratique dans le pire cas."
+
+- [ ] For sandwich (that is N log N), why is it n log n? Do we sort it? Etc etc
+
+- [ ] For intcox, why is it linear? Is it the C function that was updated further from 2022?
+
+- [ ] Check if there are more functions in R or in Python that implement pava other than what there currently is in the README.
+
+- [ ] Check for best and worse case scenarios for all.
+
+- [ ] Look at section 4 of the 2022 O(n) paper and compare with our results - are they the same?
+  - [ ] Look at the $n^2$ codes in section 4.1, analyze if some are $n$ vs $n^2$ in some cases (with different data in). See more info about data comparison in this case here: https://github.com/tdhock/sparse-label-positions/blob/main/figure-atime-cases-data.R
+  - [ ] Look at the legacy code in the appendix of the paper (monotone::legacy), and compare them to their current-day implementations - do they give the same results?
 
 
-[ ] Does monreg do what all the other functions do?
+- [ ] Pire et meilleur cas pour tous les algos
 
-    [ ] Check out if bounds in monreg are what we want
+- [ ] Regarder pour amalgm() si on a un pire cas pour lui que les direct updates n'ont pas
 
-[ ] Add column if talked about complexity in documentation or not
+- [ ] Comparer tout ce qu'on a avec les monotone::legacy() (qui sont disponibles)
 
-[x] Confirm if all of them give the same result
+- [ ] Faire tourner tout ceux qu'on a qui sont lineaires pour trouver celui avec le meilleur temps constant
 
-[x] For all linear methods that were updated after 2022 (https://www.jstatsoft.org/article/view/v102c01/4306), were they linear before?
+# Completed
 
-[ ] Add version that was tested as well as year
+- [x] Confirm if all of them give the same result (compare all results to quadprog)
 
-[ ] For sandwich (that is N log N), why is it n log n? Do we sort it? Etc etc
+- [x] For all linear methods that were updated after 2022 (https://www.jstatsoft.org/article/view/v102c01/4306), were they linear before?
 
-[ ] For intcox, why is it linear? Is it the C function that was updated further from 2022?
+- [x] Lire le papier 2022 au grand complet !! 
 
-[ ] Check if there are more functions in R or in Python that implement pava other than what there currently is in the README. 
+- [x] Add column if talked about complexity in documentation or not
 
-[ ] Best and worse case scenarios?
+- [x] Does monreg do what all the other functions do?
 
-[ ] Look at section 4 of the 2022 O(n) paper and compare with our results - are they the same?
+- [x] Add version that was tested as well as year the version was released

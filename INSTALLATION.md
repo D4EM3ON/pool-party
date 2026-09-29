@@ -169,7 +169,7 @@ cat("\nAll", nrow(check), "R packages present at the pinned versions.\n")
 
 Expected output:
 
-```
+```r
       package  expected installed loads   ok
          SAGx    1.64.0    1.64.0  TRUE TRUE
        intcox     0.9.3     0.9.3  TRUE TRUE
@@ -221,15 +221,17 @@ Every row must read `TRUE` in `ok`. `SAGx` and `intcox` are absent from this
 list on purpose: both were removed from their repositories, so there is no newer
 version to compare against.
 
-| package | archived pin | current CRAN |
-| --- | --- | --- |
-| `fdrtool` | 1.2.17 | 1.2.18 |
-| `cir` | 2.2.0 | 2.5.1 |
-| `Iso` | 0.0-18.1 | 0.0-21 |
-| `clue` | 0.3-60 | 0.3-68 |
-| `logcondens` | 2.1.6 | 2.1.9 |
-| `sandwich` | 3.0-1 | 3.1-3 |
-| `smacof` | 2.1-3 | 2.1-7 |
-| `isotone` | 1.1-0 | 1.1-2 |
-| `monotone` | 0.1.0 | 0.1.2 |
-| `directlabels` | 2021.1.13 | 2026.8.27 |
+Expected output (versions can differ in `installed`, the important part is that they are all `ok = TRUE`):
+```r
+      package expected_greater installed loads   ok
+      fdrtool           1.2.17    1.2.18  TRUE TRUE
+          cir            2.2.0     2.5.1  TRUE TRUE
+          Iso         0.0-18.1    0.0.21  TRUE TRUE
+         clue           0.3-60    0.3.68  TRUE TRUE
+   logcondens            2.1.6     2.1.9  TRUE TRUE
+     sandwich            3.0-1     3.1.3  TRUE TRUE
+       smacof            2.1-3     2.1.7  TRUE TRUE
+      isotone            1.1-0     1.1.2  TRUE TRUE
+     monotone            0.1.0     0.1.2  TRUE TRUE
+ directlabels        2021.1.13 2026.8.27  TRUE TRUE
+```
