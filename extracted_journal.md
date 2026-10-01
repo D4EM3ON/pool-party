@@ -1,12 +1,60 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 64 h (23.7 %)
+## Total hours currently worked : 66 h (24.4 %)
 
-## Total hours worked this week : 4 h
+## Total hours worked this week : 6 h
+
+## 2026-10-01: 2h
+### Description:
+- Present results in FUNCTIONS.md for $O$, $\Omega$ and $\Theta$ for the cases we looked at
+
+### Annex:
+### Results for all R packages according to different datasets on entry
+
+#### `cir`
+![alt text](entries/image-25.png)
+
+#### `clue`
+![alt text](entries/image-26.png)
+
+#### `directlabels`
+![alt text](entries/image-27.png)
+
+#### `fdrtool`
+![alt text](entries/image-28.png)
+
+#### `intcox`
+![alt text](entries/image-29.png)
+
+#### `iso`
+![alt text](entries/image-30.png)
+
+#### `isotone`
+![alt text](entries/image-31.png)
+
+#### `logcondens`
+![alt text](entries/image-32.png)
+
+#### `monotone`
+![alt text](entries/image-33.png)
+
+#### `sagx`
+![alt text](entries/image-34.png)
+
+#### `sandwich`
+![alt text](entries/image-35.png)
+
+#### `smacof`
+![alt text](entries/image-36.png)
+
+#### `stats`
+![alt text](entries/image-37.png)
 
 ## 2026-09-29: 4h
 ### Description:
 - Wrap up versions
+- Refactor all the "new" code
+- Generate data for multiple functions to see $\Omega(n)$ and $O(n)$ for best and worse-case scenarios
 
 ## 2026-09-25: 3h
 ### Description:
