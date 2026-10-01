@@ -25,6 +25,10 @@ NA in complexities column means either the function was not available pre-2021,
 
 \*\* Packages were removed/archived
 
+### Notes:
+- The `sandwich` package, with a specific set of data (notably, a cliff - see [`src/_common/data.r`](src/_common/data.r), line 16) produces a stack overflow
+
+
 
 We assume `quadprog::solve.QP` to be the source of truth here. For all of its results, all functions in all packages have (within approximately $1.5\times 10^{-8}$) the same results.
 

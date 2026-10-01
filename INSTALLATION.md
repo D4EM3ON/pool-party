@@ -29,7 +29,7 @@ install.packages(
 Nothing to install — just source the wrapper:
 
 ```r
-source("src/r/old/vendor/isoreg.r")
+source("src/_archive/old/vendor/isoreg.r")
 
 # Then use it like
 isoreg_old(y)$yf

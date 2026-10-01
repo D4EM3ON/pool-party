@@ -45,4 +45,4 @@ stopifnot(nrow(cmp) > 0, all(cmp$ok))
 # Plots only need the measurements without the result and solution columns
 # (dropped for space savings)
 ares$measurements[, c("result", "solution") := NULL]
-saveRDS(ares, glue("src/r/{package_names}/data/figure-data.rds"))
+saveRDS(ares, glue("src/_archive/{package_names}/data/figure-data.rds"))

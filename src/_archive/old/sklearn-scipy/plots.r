@@ -3,10 +3,10 @@ library(ggplot2)
 library(glue)
 
 package_names <- "old/sklearn-scipy"
-figure_path <- glue("src/python/{package_names}/figures")
+figure_path <- glue("src/_archive/{package_names}/figures")
 
 atime::atime
-ares <- readRDS(glue("src/python/{package_names}/data/figure-data.rds"))
+ares <- readRDS(glue("src/_archive/{package_names}/data/figure-data.rds"))
 
 png(
   glue("{figure_path}/figure.png"),

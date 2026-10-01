@@ -2,7 +2,7 @@ library(data.table)
 library(ggplot2)
 library(glue)
 
-source("src/r/old/vendor/isoreg.r")
+source("src/_archive/old/vendor/isoreg.r")
 
 package_names <- "old/stats-monotone-smacof"
 
@@ -92,4 +92,4 @@ for (col in setdiff(expected, ref)) {
 # Plots only need the measurements without the result and solution columns
 # (dropped for space savings)
 ares$measurements[, c("result", "solution") := NULL]
-saveRDS(ares, glue("src/r/{package_names}/data/figure-data.rds"))
+saveRDS(ares, glue("src/_archive/{package_names}/data/figure-data.rds"))

@@ -141,4 +141,4 @@ for (col in setdiff(expected, ref)) {
 # Plots only need the measurements without the result and solution columns
 # (dropped for space savings)
 ares$measurements[, c("result", "solution") := NULL]
-saveRDS(ares, glue("src/python/{package_names}/data/figure-data.rds"))
+saveRDS(ares, glue("src/_archive/{package_names}/data/figure-data.rds"))
