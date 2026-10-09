@@ -2,7 +2,7 @@ library(data.table)
 library(ggplot2)
 library(glue)
 
-make_plots <- function(package_names) {
+make_plots <- function(package_names, ref_exclude = "_legacy") {
   figure_path <- glue("src/{package_names}/figures")
 
   atime::atime
@@ -27,7 +27,13 @@ make_plots <- function(package_names) {
     "N^2" = function(x) 2 * log10(x),
     "N^3" = function(x) 3 * log10(x) # add more functions here if need be
   )
-  aref <- atime::references_best(ares, rfuns)
+  ares_ref <- ares
+  if (!is.null(ref_exclude)) {
+    ares_ref$measurements <- ares_ref$measurements[
+      !grepl(ref_exclude, expr.name)
+    ]
+  }
+  aref <- atime::references_best(ares_ref, rfuns)
   png(
     glue("{figure_path}/figure-ref.png"),
     width = 12,

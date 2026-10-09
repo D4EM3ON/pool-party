@@ -20,7 +20,7 @@ isotonic_functions <- list(
   sagx = SAGx::pava,
   sandwich = function(x, w) {
     fit <- sandwich::pava.blocks(x)
-    rep(fit$x, fit$blocks) # not exactly what i want to do
+    rep(fit$x, fit$blocks)
   },
   smacof = smacof:::pavasmacof,
   stats = function(x) isoreg(x)$yf

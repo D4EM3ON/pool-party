@@ -1,4 +1,4 @@
-source("src/_common/data.r")
+source("src/_common/plots.r")
 
 package_names <- "<PACKAGE-NAMES>"
 

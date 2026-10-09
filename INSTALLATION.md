@@ -20,6 +20,30 @@ install.packages(
 )
 ```
 
+#### `spsurvey`
+```r
+tmp <- tempfile(); dir.create(tmp)
+tgz <- file.path(tmp, "spsurvey_4.1.4.tar.gz")
+download.file(
+  "https://cran.r-project.org/src/contrib/Archive/spsurvey/spsurvey_4.1.4.tar.gz",
+  tgz
+)
+untar(tgz, exdir = tmp)
+pkg <- file.path(tmp, "spsurvey")
+desc <- file.path(pkg, "DESCRIPTION")
+writeLines(sub("rgeos, ", "", readLines(desc)), desc)
+ns <- file.path(pkg, "NAMESPACE")
+writeLines(grep("rgeos", readLines(ns), value = TRUE, invert = TRUE), ns)
+install.packages(pkg, repos = NULL, type = "source")
+```
+
+#### `UniIsoRegression`
+```r
+install.packages(
+  "https://cran.r-project.org/src/contrib/Archive/UniIsoRegression/UniIsoRegression_0.0-0.tar.gz",
+  repos = NULL, type = "source"
+)
+```
 
 ### R 
 
