@@ -1,14 +1,14 @@
 # Todo
 
 - [ ] Add tous les algos du papier de 2022 qu'on a pas, partout
-  - [ ] Ajouter code non existant sauf sous monotone::legacy
+  - [x] Ajouter code non existant sauf sous monotone::legacy
   - [ ] Comparer tout ce qu'on a avec les monotone::legacy() (qui sont disponibles)
 
 - [ ] Trouver (??) et lire Van Waning (1976)
 
 - [ ] Pour colonne Busing 2022 ajouter complexite temporelle dite
 
-- [ ] Trouver intcox pour la Table 2 de Busing (2022)
+- [ ] Trouver les informations nécessaires pour intcox comme si on remplissait la Table 2 de Busing (2022)
   - [ ] Add intcox to monotone.iterations public package from Pr. Hocking (réfléchir, regarder ce que ça fait, pourquoi et comment, comment la convertir)
 
 - [ ] Check if there are more functions in R or in Python that implement pava other than what there currently is in the README.

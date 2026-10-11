@@ -2,28 +2,50 @@ library(data.table)
 library(ggplot2)
 library(glue)
 
+source("src/jbkpava/src/jbkpava.r")
+
+Rcpp::sourceCpp("src/density-friendly/src/exactDF.cpp")
+
+
 # Folder to validate that all isotonic functions produce consistent results
 
-package_names <- "validation"
+package_names <- "_validation"
 
 
 isotonic_functions <- list(
   cir = cir::oldPAVA,
   clue = clue:::pava,
+  density_friendly = density_friendly_pava,
   directlabels = directlabels::isoreg_dp,
   fdrtool = function(x) fdrtool::monoreg(x)$yf,
   intcox = function(x) intcox:::intcox.pavaC(rep(1, length(x)), x),
   iso = Iso:::pava,
   isotone = function(x) isotone::gpava(seq_along(x), x)$x,
+  jbkpava = jbkpava,
   logcondens = function(x) logcondens::isoMean(x, rep(1, length(x))),
   monotone = monotone::monotone,
+  monotone_amalgm = function(x) monotone::legacy(x, number = 3),
+  monotone_fitm = function(x) monotone::legacy(x, number = 1),
+  monotone_inplacepava = function(x) monotone::legacy(x, number = 11),
+  monotone_linearpava = function(x) monotone::legacy(x, number = 10),
+  monotone_pav = function(x) monotone::legacy(x, number = 4),
+  monotone_pooledpava = function(x) monotone::legacy(x, number = 9),
   sagx = SAGx::pava,
   sandwich = function(x, w) {
     fit <- sandwich::pava.blocks(x)
     rep(fit$x, fit$blocks)
   },
-  smacof = smacof:::pavasmacof,
-  stats = function(x) isoreg(x)$yf
+  smacof_pavasmacof = smacof:::pavasmacof,
+  smacof_wmonreg = function(x) {
+    .C(smacof:::wmonreg, as.double(x), as.double(rep(1, length(x))),
+       as.integer(length(x)))[[1]]
+  },
+  spsurvey = function(x) spsurvey::isotonic(x, -Inf, Inf),
+  stats = function(x) isoreg(x)$yf # ,
+  # Removed, as it produces an error as mentioned in `README.md`
+  # uniisoregression = function(x) {
+  #   UniIsoRegression::reg_1d(x, rep(1, length(x)), metric = 2)
+  # }
 )
 (expr_list <- atime::atime_grid(
   list(PKG = names(isotonic_functions)),
@@ -103,5 +125,5 @@ for (col in setdiff(expected, ref)) {
 
 # Plots only need the measurements without the result and solution columns
 # (dropped for space savings)
-ares$measurements[, result := NULL]
+ares$measurements[, c("result", "solution") := NULL]
 saveRDS(ares, glue("src/{package_names}/data/figure-data.rds"))

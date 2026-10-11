@@ -17,12 +17,16 @@ Imports:
     monotone,
     monreg,
     quadprog,
+    Rcpp,
     reticulate,
     sandwich,
     smacof
 Suggests:
     intcox,
-    SAGx
-Note: 'intcox' and 'SAGx' are no longer distributed by CRAN and
-    Bioconductor; see INSTALLATION.md for how to install them from the
+    SAGx,
+    spsurvey,
+    UniIsoRegression
+Note: 'intcox', 'SAGx' and 'UniIsoRegression' are no longer distributed
+    by CRAN and Bioconductor, and 'spsurvey' is needed at its archived
+    version 4.1.4; see INSTALLATION.md for how to install them from the
     archives.

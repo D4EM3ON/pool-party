@@ -1,0 +1,168 @@
+# Extra PAVA functions
+
+R and Python functions implementing PAVA (or close variants) that are **not** already in the [README](README.md) table. Found on 2026-10-10 through GitHub code search on the `cran/`, `bioc/` and `r-forge/` mirrors, r-universe, PyPI sdists, and reading the actual source.
+
+- `:::` = internal (not exported). "nested" = closure defined inside another function (not callable directly).
+- Dates are first → last release of the package, not of the function.
+- Links to `github.com/cran/...` point to the latest CRAN version (read-only mirror).
+
+*These were all found via Claude agents, and are results to be checked*
+
+## R — own implementations of plain PAVA
+
+| Lang | Code | Function | Weights | Status | Source | Notes |
+| ---- | ---- | -------- | :-----: | ------ | ------ | ----- |
+| R | C | `timereg::pava()`, `timereg::pava.pred()` (C `pava`/`wpava`/`upava`) | yes | CRAN, 2008–2025 | [src/pava.c](https://github.com/cran/timereg/blob/HEAD/src/pava.c) | By Bahjat Qaqish. Multi-pass, pools maximal non-increasing runs; unweighted fast path |
+| R | C++ | `icenReg` `weighted_pava`, `pava`, `pavaForOptim` (internal, `.Call`) | yes | CRAN, 2015–2024 | [src/icenReg_files/myPAVAalgorithm.cpp](https://github.com/cran/icenReg/blob/HEAD/src/icenReg_files/myPAVAalgorithm.cpp) | Near-copy of the timereg/Qaqish code |
+| R | C++ | `targeted::pava()`, `targeted:::isoregw` (C++ `target::pava`) | yes | CRAN, 2020–2026 | [src/target/src/pava.cpp](https://github.com/cran/targeted/blob/HEAD/src/target/src/pava.cpp) | By K. Holst. Returns jump indices + values |
+| R | C++ | `gof` `target::pava` (internal) | yes | CRAN archived 2020 (2009–2020) | [src/pava.cpp](https://github.com/cran/gof/blob/HEAD/src/pava.cpp) | Older copy of the targeted code |
+| R | C++ | `STAREG` `my_pava(values, weight, decreasing)` (internal) | yes | CRAN, 2023–2025 | [src/em_lfdr.cpp L222](https://github.com/cran/STAREG/blob/HEAD/src/em_lfdr.cpp#L222) | Stack-based, single pass |
+| R | C++ | `ReAD` `my_pava` (internal) | yes | CRAN, 2023 | [src/em_hmm.cpp L267](https://github.com/cran/ReAD/blob/HEAD/src/em_hmm.cpp#L267) | Same code as STAREG |
+| R | C++ | `sffdr::monoSmooth_pava()` | no | CRAN, 2024–2026 | [src/monoSmooth.cpp](https://github.com/cran/sffdr/blob/HEAD/src/monoSmooth.cpp) | Grouped by stratum, decreasing, stack-based |
+| R | C++ | `sirt::monoreg.rowwise()`, `sirt::monoreg.colwise()` | yes | CRAN, 2013–2025 | [src/sirt_rcpp_monoreg.cpp](https://github.com/cran/sirt/blob/HEAD/src/sirt_rcpp_monoreg.cpp) | Port of fdrtool's isomean |
+| R | C++ | `CORElearn` `Calibrate::isoRegCal` (via `calibrate(method = "isoReg")`) | yes | CRAN archived 2026 (2009–2024) | [src/calibrate.cpp L45](https://github.com/cran/CORElearn/blob/HEAD/src/calibrate.cpp#L45) | Port of Dümbgen's code (same algorithm as `logcondens::isoMean`) |
+| R | C++ | `orQA` `Rcpp_isomean` (behind `misoreg`) | yes | CRAN archived 2022 (2010) | [src/orQA.cpp](https://github.com/cran/orQA/blob/HEAD/src/orQA.cpp) | Dümbgen isoMean port, row-wise |
+| R | C | `fmds` `monotone(n, x, w)` (internal) | yes | CRAN, 2025 | [src/flib.c L5582](https://github.com/cran/fmds/blob/HEAD/src/flib.c#L5582) | By F. Busing, his O(n) algorithm. Variant of `monotone::monotone` |
+| R | C | `lmap` `monotone` (internal) | yes | CRAN, 2022–2025 | [src/flib.c L5255](https://github.com/cran/lmap/blob/HEAD/src/flib.c#L5255) | Same Busing code as fmds |
+| R | Fortran | `PMCMRplus` `pava` (used by `williamsTest`, `chackoTest`, `frdHouseTest`) | yes | CRAN, 2018–2024 | [src/pava.f](https://github.com/cran/PMCMRplus/blob/HEAD/src/pava.f) | Ratfor modification of AS 206 (copy of Iso's). O(n²) relabelling |
+| R | R | `bmd:::.pava` | yes | CRAN archived; [GitHub](https://github.com/DoseResponse/bmd) | [R/pava.R](https://github.com/DoseResponse/bmd/blob/HEAD/R/pava.R) | Line-by-line R port of the Ratfor `pava.f` |
+| R | Fortran / R | `Gifi` `AMALGM`, `Gifi:::amalgm1`, `Gifi:::isotone` | yes | CRAN, 2018–2025 | [src/pava.f](https://github.com/cran/Gifi/blob/HEAD/src/pava.f), [R/coneRegression.R](https://github.com/cran/Gifi/blob/HEAD/R/coneRegression.R) | AS 149 (Kruskal up-and-down blocks) — the original `amalgm()` |
+| R | Fortran | `vegan` `MONREG` (inside `monoMDS`) | ties only | CRAN, 2001–2026 | [src/monoMDS.f L775](https://github.com/cran/vegan/blob/HEAD/src/monoMDS.f#L775) | Kruskal up-and-down blocks, by P. Minchin |
+| R | Fortran | `timsac` `POOLAV` | no | CRAN, 2007–2026 | [src/bayseaf.f L1762](https://github.com/cran/timsac/blob/HEAD/src/bayseaf.f#L1762) | Akaike's BAYSEA, repeated passes |
+| R | C | `mcmc` PAVA inlined in `initseq` | counts | CRAN, 2005–2023 | [src/initseq.c L66](https://github.com/cran/mcmc/blob/HEAD/src/initseq.c#L66) | Convex initial-sequence estimator (PAVA on autocovariance differences) |
+| R | R / C | `DDHFm::isotone` (C `isotoneC`) | yes | CRAN, 2005–2024 | [src/DDHFm.c L191](https://github.com/cran/DDHFm/blob/HEAD/src/DDHFm.c#L191) | Repeated-pass pooling (Silverman style) |
+| R | R | `aspect:::pava(x, w, block = weighted.mean)` | yes | CRAN, 2009–2025 | [R/pava.R](https://github.com/cran/aspect/blob/HEAD/R/pava.R) | De Leeuw up/down blocks. Predecessor of `smacof:::pavasmacof` |
+| R | R | `homals:::pava` | yes | CRAN, 2002–2025 | [R/pava.R](https://github.com/cran/homals/blob/HEAD/R/pava.R) | Same code as aspect |
+| R | R | `provenance:::pavasmacof`, `:::monregP/S/T` | yes | CRAN, 2015–2025 | [R/indscal.R L355](https://github.com/cran/provenance/blob/HEAD/R/indscal.R#L355) | Copy of `smacof:::pavasmacof` (already in README) |
+| R | R | `EbayesThresh::isotone(x, wt, increasing)` | yes | CRAN, 2005–2017 | [R/isotone.R](https://github.com/cran/EbayesThresh/blob/HEAD/R/isotone.R) | Parallel PAV steps over local max/min |
+| R | R | `fda:::isotone(y)` | no | CRAN, 2003–2025 | [R/isotone.R](https://github.com/cran/fda/blob/HEAD/R/isotone.R) | Up/down pooling loop |
+| R | R | `exametrika:::pava_up(y, w)` | yes | CRAN, 2024–2026 | [R/00_isotonic_CORE.R L14](https://github.com/cran/exametrika/blob/HEAD/R/00_isotonic_CORE.R#L14) | Backtracking pairwise, returns number of blocks |
+| R | R | `np:::.np_condist_weighted_pava` | yes | CRAN, 2006–2026 | [R/np.condistribution.proper.R L111](https://github.com/cran/np/blob/HEAD/R/np.condistribution.proper.R#L111) | Recent addition, backtracking block merge, tolerance |
+| R | R | `propensity:::pava_weighted(x, y, w)` | yes | CRAN, 2026 | [R/ps_calibration.R L12](https://github.com/cran/propensity/blob/HEAD/R/ps_calibration.R#L12) | No tie grouping (unlike isoreg) |
+| R | R | `serosv::pava(pos, tot)` | yes (counts) | CRAN, 2024–2026 | [R/utils.R L36](https://github.com/cran/serosv/blob/HEAD/R/utils.R#L36) | Ad hoc backward pooling. Correctness uncertain |
+| R | R | `MultBiplotR::MonotoneRegression` | yes | CRAN, 2021–2025 | [R/MonotoneRegression.R](https://github.com/cran/MultBiplotR/blob/HEAD/R/MonotoneRegression.R) | Port of MATLAB `lsqisotonic`. Uncertain: one search says the package uses `stats::isoreg` |
+| R | R | `glrt::PMGA(est, ww)` | yes | CRAN archived 2022 (2010–2015) | [R/PMGA.R](https://github.com/cran/glrt/blob/HEAD/R/PMGA.R) | "Pool monotone groups", copy of Bioconductor `Icens::PMGA` |
+| R | R | `icrf:::PMGA` | yes | CRAN archived 2024 (2020–2022) | [R/Icens.R L128](https://github.com/cran/icrf/blob/HEAD/R/Icens.R#L128) | Icens copy |
+| R | R | `iwtp:::PMGA` | yes | CRAN archived 2014 (2012) | [R/icmle.R L127](https://github.com/cran/iwtp/blob/HEAD/R/icmle.R#L127) | Icens copy |
+| R | R | `gcrma:::PAV` (+ `average.for.PAV`) | yes | Bioconductor, active | [R/PAV.R](https://github.com/bioc/gcrma/blob/HEAD/R/PAV.R) | "Modification of Derick's PAV program". Decreasing fit |
+| R | C++ / Rust | `isodistrreg` v0.1.0 `pavaCorrect`, `isoCdf_sequential`; v0.6.0 `tonic_regression::algorithm` | v0.1: no / v0.6: yes | CRAN, 2021–2026 | [tonic_regression.rs](https://github.com/cran/isodistrreg/blob/HEAD/src/rust/isodistrreg/src/total_order/tonic_regression.rs) | v0.1 `isoCdf` = abridged sequential PAVA (Henzi–Mösching–Dümbgen). v0.6 Rust rewrite |
+| R | C++ | `OptimalBinningWoE` `applyIsotonicRegression` (OBN_IR) | yes (bin counts) | CRAN, 2026 | [src/OBN_IR_v5.cpp L643](https://github.com/evandeilton/OptimalBinningWoE/blob/HEAD/src/OBN_IR_v5.cpp#L643) | Stack PAVA on bin rates |
+| R | C++ | `simFastBOIN` `pava` | yes | CRAN, 2025–2026 | [src/boin_core.h L49](https://github.com/cran/simFastBOIN/blob/HEAD/src/boin_core.h#L49) | Bit-for-bit C++ port of the Harding/BOIN R code below |
+
+### Copies of the Ted Harding (R-help, 2007) `pava`
+
+All R, weighted, O(n²) (leftmost-violator level-set merge). `kyotil` credits the R-help post; `escalation` says "copied from BOIN".
+
+| Package | Function | Status | Source |
+| ------- | -------- | ------ | ------ |
+| kyotil | `kyotil::pava(x, wt)` (exported) | CRAN, 2013–2024 | [R/misc.R L120](https://github.com/cran/kyotil/blob/HEAD/R/misc.R#L120) |
+| escalation | `escalation:::pava` | CRAN, 2020–2025 | [R/helpers.R L121](https://github.com/cran/escalation/blob/HEAD/R/helpers.R#L121) |
+| TEQR | `TEQR:::pava` | CRAN, 2010–2016 | [R/TEQR.R L27](https://github.com/cran/TEQR/blob/HEAD/R/TEQR.R#L27) |
+| UnifiedDoseFinding | `:::pava_binary`, `:::pava_continuous` + nested | CRAN, 2020–2022 | [cran/UnifiedDoseFinding](https://github.com/cran/UnifiedDoseFinding) |
+| SKBD | `SKBD::pava` | CRAN, 2026 | [cran/SKBD](https://github.com/cran/SKBD) |
+| BOIN | nested in `select.mtd`, `next.subtrial`, `get.oc.comb` | CRAN, 2014–2021 | [R/select.mtd.R L79](https://github.com/cran/BOIN/blob/HEAD/R/select.mtd.R#L79) |
+| Keyboard | nested in `select.mtd.kb`, `select.obd.kb` | CRAN, 2020–2022 | [cran/Keyboard](https://github.com/cran/Keyboard) |
+| bfboinet | nested in `select_mtd` | CRAN, 2024–2026 | [cran/bfboinet](https://github.com/cran/bfboinet) |
+| CFO | nested in `CFO.selectmtd`, `CFO2d` | CRAN, 2024 | [cran/CFO](https://github.com/cran/CFO) |
+| HybridDesign | nested | CRAN, 2022 | [cran/HybridDesign](https://github.com/cran/HybridDesign) |
+| PoPdesign | nested | CRAN, 2021–2024 | [cran/PoPdesign](https://github.com/cran/PoPdesign) |
+| TITEgBOIN | nested | CRAN, 2023–2025 | [cran/TITEgBOIN](https://github.com/cran/TITEgBOIN) |
+| FIND | nested in `select_mtd` | CRAN | [cran/FIND](https://github.com/cran/FIND) |
+| GitHub only | haoluns/ModelAssistedPhase12, xiaohanchi/backfilling, ruitaolin/TODO, qingxiaa/titegboin | — | — |
+
+### GitHub-only / paper supplements (R)
+
+| Lang | Code | Repo | Function | Weights | Notes |
+| ---- | ---- | ---- | -------- | :-----: | ----- |
+| R | R | [AlexanderHenzi/abridgedPava](https://github.com/AlexanderHenzi/abridgedPava) | `PAVA`, `PAVA2`, `isoCdf` (`isoCDF.R`) | yes | Code for the "Accelerating the PAVA" paper. Antitonic |
+| R | R / C++ | [Kristof-K/PAVA-Comparison](https://github.com/Kristof-K/PAVA-Comparison) | own R + `pava_mean.cpp` | ? | Benchmark repo (2023) — useful to compare with ours |
+| R | R | [open-AIMS/toxstats](https://github.com/open-AIMS/toxstats) | internal `pava`, `smooth_monotone` (`R/smooth.R`) | yes | Stack-based |
+| R | R | [rootcoder007/rmorie](https://github.com/rootcoder007/rmorie) | `.isotn_pava`, `isotn` (`R/isotn.R`) | yes | |
+| R | R | [cregouby/TabICL2](https://github.com/cregouby/TabICL2) | `.pava_single`, `isotonic_regression_pava` (`R/quantile_dist.R`) | yes | |
+| R | C++ | [Marcosjnez/cm](https://github.com/Marcosjnez/cm) | `int_pava`, `pava` (`src/cm.cpp` L44, L120) | yes | Armadillo |
+| R | C | [slwu89/RC](https://github.com/slwu89/RC) | `mcsm_pava` → `mcsm_pava_c` | yes | C body not read |
+| R | R | [szcf-weiya/MonteCarlo](https://github.com/szcf-weiya/MonteCarlo) | `pooladv` (`Misc/pool-adjacent-violators.R`) | yes | Teaching code |
+| R | R | [janhove/GeneralLinearModel](https://github.com/janhove/GeneralLinearModel) | `pava(x, y)` (`functions/pava.R`) | no | Teaching code |
+
+## R — PAVA variants and generalisations
+
+| Lang | Code | Function | Weights | Status | Source | Notes |
+| ---- | ---- | -------- | :-----: | ------ | ------ | ----- |
+| R | R | `OrdMonReg::BoundedIsoMean`, `BoundedAntiMean` | yes | CRAN, 2009–2026 | [R/BoundedIsoMean.r](https://github.com/cran/OrdMonReg/blob/HEAD/R/BoundedIsoMean.r) | PAVA with lower/upper bounds |
+| R | R | `cir::cirPAVA` | yes | CRAN, 2008–2025 | [R/cir.R L37](https://github.com/cran/cir/blob/HEAD/R/cir.R#L37) | Centered isotonic regression (modified PAVA). Not `oldPAVA` |
+| R | C++ | `HEMDAG::gpav` (`gpav_cpp`) | yes | CRAN archived 2025 (2017–2021) | [R/gpav.R](https://github.com/cran/HEMDAG/blob/HEAD/R/gpav.R) | Burdakov generalized PAV on a DAG (partial order) |
+| R | C / R | `isocir` C `cirPAVA` (behind `CIRE`), R `cirPAVA` nested in `CLM` | no | CRAN, 2011–2025 | [src/auxiliary.c L52](https://github.com/cran/isocir/blob/HEAD/src/auxiliary.c#L52) | Circular-order PAVA |
+| R | R | `liso:::pavareg`, `liso:::pavaregorig` | ? | CRAN archived 2018 (2011) | [R/backfit.R L185](https://github.com/cran/liso/blob/HEAD/R/backfit.R#L185) | Lasso-penalised PAVA, built on `pava()` (probably Iso's) |
+| R | R | `RPEXE.RPEXT::pava_dfr`, `pava_ifr` | implicit (ratio) | CRAN, 2017–2020 | [R/pava_dfr.R](https://github.com/cran/RPEXE.RPEXT/blob/HEAD/R/pava_dfr.R) | Pools death / time-at-risk ratios for change-points |
+| R | R | LCLRDistReg (GitHub, philipstange) `BimonoReg` | ? | GitHub only | — | "Modified PAVA", bimonotone |
+| R | ? | Novartis/orthoMTL `nnmaxheap_C` | ? | GitHub only | — | "PAV-style". Source not read |
+
+## R — isotonic regression, but not PAVA
+
+| Package | Function | Notes |
+| ------- | -------- | ----- |
+| MASS | C `VR_mds_fn` (used by `isoMDS`) | Greatest convex minorant / min-slope on cumsums, unweighted, O(n²) |
+| MixSemiRob | `MixSemiRob:::MINLOWSET` | Minimum lower sets; code says "alternative to PAVA" |
+| ed50 / ed50simulation | `preparePava` | Min-max formula (Max Kuhn s-news, 1999), not iterative |
+| ORCME | `isotonicmeans` | Min-max formula with GLS covariance; main path uses `Iso::pava` |
+| SDBP | `SDBP:::mypava` | Special-purpose max-projection, not PAVA despite the name |
+| GeneF | `flexisoreg` | Dynamic-programming reduced isotonic regression |
+| exametrika | `iso_dual_map` (C++) | Dual / bisection method |
+| ICRanks | `PAVACheck` (C++) | Only checks / partial PAVA inside a ranking CI algorithm |
+| image.dlib | dlib C++ `isotonic_regression` class | Bundled dlib code (block/stack PAV, appears unweighted). Archived 2024 |
+
+## Python — own implementations (not sklearn / scipy)
+
+| Lang | Code | Function | Weights | Bounds / extras | Status | Source | Notes |
+| ---- | ---- | -------- | :-----: | --------------- | ------ | ------ | ----- |
+| Python | Python | `model_diagnostics._utils.isotonic.pava`, `gpava`, `isotonic_regression` | yes | increasing flag; mean/quantile/expectile | 2022–2026 | [isotonic.py](https://github.com/lorentzenchr/model-diagnostics/blob/main/src/model_diagnostics/_utils/isotonic.py) | Docstring says Busing (2022) O(n) PAVA |
+| Python | numba | `jaxopt.isotonic.isotonic_l2_pav` | no | `y_min`/`y_max` (clipped after PAV); increasing flag | maintenance (0.8.5) | [isotonic.py](https://github.com/google/jaxopt/blob/main/jaxopt/_src/isotonic.py) | Called via `jax.pure_callback`, custom JVP. Not in optax |
+| Python | numba | `fast_soft_sort.third_party.isotonic.isotonic_l2`, `isotonic_kl` | KL only | decreasing only | archived, not on PyPI | [isotonic.py](https://github.com/google-research/fast-soft-sort/blob/master/fast_soft_sort/third_party/isotonic.py) | Google Research |
+| Python | C++ / CUDA | `torchsort` `isotonic_l2`, `isotonic_kl` | KL only | — | 2021–2025 | [isotonic_cpu.cpp](https://github.com/teddykoker/torchsort/blob/main/torchsort/isotonic_cpu.cpp) | |
+| Python | Scala | `pyspark.ml.regression.IsotonicRegression`, `pyspark.mllib.regression.IsotonicRegression` | yes | `isotonic` flag | active | [IsotonicRegression.scala](https://github.com/apache/spark/blob/master/mllib/src/main/scala/org/apache/spark/mllib/regression/IsotonicRegression.scala) | `poolAdjacentViolators` per partition, then again on merged result. Also used by R `sparklyr` / `SparkR` |
+| Python | Java | `h2o.estimators.isotonicregression.H2OIsotonicRegressionEstimator` | yes | `out_of_bounds` | 2018–2026 | [hex/isotonic](https://github.com/h2oai/h2o-3/tree/master/h2o-algos/src/main/java/hex/isotonic) | Unverified: based on class names (`PoolAdjacentViolators`) |
+| Python | Rust | `isodistrreg.isotonic_regression`, `IsotonicDistributionalRegressor` | yes | decreasing; partial orders | 2026 | [AlexanderHenzi/isodistrreg](https://github.com/AlexanderHenzi/isodistrreg) | PAVA for total orders; ADMM/Hildreth for partial orders |
+| Python | Rust | `polars_statistics.Isotonic` | ? | increasing; clip | 2025–2026 | [DataZooDE/polars-statistics](https://github.com/DataZooDE/polars-statistics) | Unverified: docstring only (crate `anofox-regression`) |
+| Python | Python | `pwlfit.isotonic.isotonic_regression` → `_pool_adjacent_violators` | yes | increasing flag | GitHub only | [isotonic.py](https://github.com/google/pwlfit/blob/master/pwlfit/isotonic.py) | google/pwlfit (not the PyPI `pwlfit`) |
+| Python | Python | `calibre._core.weighted_pava` (+ `RelaxedPAVACalibrator`, `nearly_isotonic_path`) | yes | relaxed: min increment | 2025–2026 | [_core.py](https://github.com/finite-sample/calibre/blob/main/calibre/_core.py) | `calibre.IsotonicCalibrator` itself wraps sklearn |
+| Python | Python | `MOBPY.core.pava.PAVA` | implicit | sign +/−/auto | 2023–2026 | [pava.py](https://github.com/ChenTaHung/Monotonic-Optimal-Binning/blob/main/src/MOBPY/core/pava.py) | Monotone optimal binning |
+| Python | numba | `online_cp.venn._pava_inplace(y, w)` | yes | — | 2024–2026 | [venn.py](https://github.com/egonmedhatten/online-cp/blob/main/src/online_cp/venn.py) | |
+| Python | Python | `remeta.util._pav_isotonic(y, w=None)` | yes | — | 2022–2026 | `remeta/util.py:415` (PyPI) | Unverified: body not read |
+| Python | numpy | `bayesian_bm25.calibration.IsotonicCalibrator` | ? | — | 2026 | [calibration.py](https://github.com/cognica-io/bayesian-bm25/blob/main/bayesian_bm25/calibration.py) | |
+| Python | Python | `netcal.binning.NearIsotonicRegression`, `ENIR` | no | — | 2019–2026 | [NearIsotonicRegression.py](https://github.com/EFS-OpenSource/calibration-framework/blob/main/netcal/binning/NearIsotonicRegression.py) | Modified PAVA (near-isotonic). `netcal`'s `IsotonicRegression` wraps sklearn |
+| Python | Python | `sidekit.bosaris.detplot.pavx(y)` | no | — | dead (2021) | `sidekit/bosaris/detplot.py:289` | Port of BOSARIS Matlab |
+| Python | Python | `hyperion.metrics.utils.pavx(y)` | no | — | dead (2019), GitHub only | [utils.py](https://github.com/jsalt2019-diadet/hyperion/blob/master/hyperion/metrics/utils.py) | BOSARIS port |
+| Python | Cython | `torchsparseattn._isotonic._inplace_contiguous_isotonic_regression` | yes | — | dead (2019) | [_isotonic.pyx](https://github.com/vene/sparse-structured-attention/blob/master/pytorch/torchsparseattn/_isotonic.pyx) | Vendored copy of sklearn's `_isotonic.pyx` |
+
+### Python — same result, different algorithm
+
+- `venn_abers.calc_p0p1` ([ip200/venn-abers](https://github.com/ip200/venn-abers)): greatest convex minorant of the cumulative sum diagram (Barlow 1972), not a pooling loop. Vendored by MAPIE in `mapie/_venn_abers.py`.
+
+## Other languages (GitHub only)
+
+- [schulzch/pava](https://github.com/schulzch/pava) — Rust (2019)
+- [maxdan94/pava](https://github.com/maxdan94/pava) — C
+- [dschrempf/pava](https://github.com/dschrempf/pava) — Haskell
+
+## Wrappers only (no own PAVA — excluded)
+
+- **`Iso::pava` / `Iso::ufit` / `Iso::biviso`**: dacc, gren, hisemi, imp4p, isoph, aisoph, isoSurv, MinEDfind, NMTox, ORCME, orderedLasso, pi0, IsoGene, IsoGeneGUI (Bioc), GRridge (Bioc), survML, admix, titeIR, GSSE, isoboost, drcHelper, mISO, boinet, LCLRDistReg; BOIN / Keyboard / escalation combination designs
+- **`isotone::gpava` / `activeSet`**: twostageTE, CLME, L2E, comparison, lmtp, rankrate, gpmap, RDS, grpSLOPE, tsk
+- **`stats::isoreg`**: probably, probcal, cobs, csci, mob, monobin, varbin, qeML, reliabilitydiag, statip, bgms, CAGEfightR, htSeqTools, ecodist, stcov, rtemis, RFGeneRank (Bioc), IV_dist, TLPR, SBC, ftnonpar
+- **`fdrtool::monoreg`**: ggisotonic
+- **`cir`**: upndown
+- **Spark MLlib**: sparklyr, SparkR
+- **sklearn / scipy (Python)**: arviz-stats, statsmodels (local FDR), lir, PYLLR, mapie, pycalib, uncertainty-toolbox, skpro, netcal `IsotonicRegression`, calibre `IsotonicCalibrator`
+
+## Checked, nothing found
+
+- **R**: Rfast, Rfast2, MonoPoly, scar, bnpmr, coneproj, ic.infer, stepR, kernlab, pROC, calibrate, logconcens, logcondens.mode, OrdFacReg, DTDA, binGroup, asbio, npsp, restriktor, cgam, rms, ordinal, Rfit, interval, MLEcens, LogConcDEAD, logcondiscr, monreg (kernel method), bisoreg (Bayesian), scam, isotonic.pen, dfcrm, bcrm, pocrm, crmPack, trialr, DoseFinding, ordcrm, dfpk, MTDrh, icensmis, ICsurv, intcensROC, ICE, icRSF, CalibratR, classifierplots, locfdr, twilight, qvalue, limma, McMiso, meta.shrinkage
+- **Python**: tensorflow-lattice (Dykstra projections), pygam (penalties), LightGBM / XGBoost / CatBoost (split constraints), cvxpy (generic QP), stucchio/isotonic (LP), cuML, betacal, ml-insights, crepes, river, calibra, optax
+- **Not checked**: pymc, pyts, tslearn, skglm, celer, modAL, fairlearn, pymoo; SLOPE
+
+## Caveats
+
+- GitHub code search caps results at 100 hits per query, so archived and GitHub-only packages may be missing.
+- h2o, polars-statistics, remeta, slwu89/RC and orthoMTL were judged from names / docstrings, not by reading the code.
+- `serosv::pava` correctness is unverified.
+- The two R searches disagree on MultBiplotR (own `MonotoneRegression` vs. `stats::isoreg`); it may contain both.

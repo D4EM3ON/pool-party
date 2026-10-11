@@ -151,6 +151,14 @@ install.packages(
 ```
 
 
+### Vendored code
+
+`density-friendly` and `jbkpava` are not packages: their sources are vendored in
+`src/density-friendly/src/` and `src/jbkpava/src/`, so there is nothing to
+install. `density-friendly` is compiled on the fly with `Rcpp::sourceCpp`;
+`jbkpava` needs `R CMD SHLIB src/jbkpava/src/jbkpava.c` once to build
+`jbkpava.so`.
+
 ### Python
 
 Nothing to do, all is already in the current-day code.
@@ -161,18 +169,20 @@ Nothing to do, all is already in the current-day code.
 
 ```r
 expected <- c(
-  SAGx         = "1.64.0",
-  intcox       = "0.9.3",
-  fdrtool      = "1.2.17",
-  cir          = "2.2.0",
-  Iso          = "0.0-18.1",
-  clue         = "0.3-60",
-  logcondens   = "2.1.6",
-  sandwich     = "3.0-1",
-  smacof       = "2.1-3",
-  isotone      = "1.1-0",
-  monotone     = "0.1.0",
-  directlabels = "2021.1.13"
+  SAGx             = "1.64.0",
+  intcox           = "0.9.3",
+  spsurvey         = "4.1.4",
+  UniIsoRegression = "0.0-0",
+  fdrtool          = "1.2.17",
+  cir              = "2.2.0",
+  Iso              = "0.0-18.1",
+  clue             = "0.3-60",
+  logcondens       = "2.1.6",
+  sandwich         = "3.0-1",
+  smacof           = "2.1-3",
+  isotone          = "1.1-0",
+  monotone         = "0.1.0",
+  directlabels     = "2021.1.13"
 )
 
 check <- data.frame(package = names(expected), expected = unname(expected))
@@ -194,19 +204,21 @@ cat("\nAll", nrow(check), "R packages present at the pinned versions.\n")
 Expected output:
 
 ```r
-      package  expected installed loads   ok
-         SAGx    1.64.0    1.64.0  TRUE TRUE
-       intcox     0.9.3     0.9.3  TRUE TRUE
-      fdrtool    1.2.17    1.2.17  TRUE TRUE
-          cir     2.2.0     2.2.0  TRUE TRUE
-          Iso  0.0-18.1  0.0.18.1  TRUE TRUE
-         clue    0.3-60    0.3.60  TRUE TRUE
-   logcondens     2.1.6     2.1.6  TRUE TRUE
-     sandwich     3.0-1     3.0.1  TRUE TRUE
-       smacof     2.1-3     2.1.3  TRUE TRUE
-      isotone     1.1-0     1.1.0  TRUE TRUE
-     monotone     0.1.0     0.1.0  TRUE TRUE
- directlabels 2021.1.13 2021.1.13  TRUE TRUE
+          package  expected installed loads   ok
+             SAGx    1.64.0    1.64.0  TRUE TRUE
+           intcox     0.9.3     0.9.3  TRUE TRUE
+         spsurvey     4.1.4     4.1.4  TRUE TRUE
+ UniIsoRegression     0.0-0     0.0.0  TRUE TRUE
+          fdrtool    1.2.17    1.2.17  TRUE TRUE
+              cir     2.2.0     2.2.0  TRUE TRUE
+              Iso  0.0-18.1  0.0.18.1  TRUE TRUE
+             clue    0.3-60    0.3.60  TRUE TRUE
+       logcondens     2.1.6     2.1.6  TRUE TRUE
+         sandwich     3.0-1     3.0.1  TRUE TRUE
+           smacof     2.1-3     2.1.3  TRUE TRUE
+          isotone     1.1-0     1.1.0  TRUE TRUE
+         monotone     0.1.0     0.1.0  TRUE TRUE
+     directlabels 2021.1.13 2021.1.13  TRUE TRUE
 ```
 
 ### New packages
@@ -241,9 +253,11 @@ stopifnot(all(check$ok))
 cat("\nAll", nrow(check), "R packages are newer than the archived pins.\n")
 ```
 
-Every row must read `TRUE` in `ok`. `SAGx` and `intcox` are absent from this
-list on purpose: both were removed from their repositories, so there is no newer
-version to compare against.
+Every row must read `TRUE` in `ok`. `SAGx`, `intcox`, `spsurvey` and
+`UniIsoRegression` are absent from this list on purpose: `SAGx`, `intcox` and
+`UniIsoRegression` were removed from their repositories, so there is no newer
+version to compare against, and `spsurvey` is only used at its archived
+version.
 
 Expected output (versions can differ in `installed`, the important part is that they are all `ok = TRUE`):
 ```r

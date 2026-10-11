@@ -2,7 +2,7 @@ library(data.table)
 library(ggplot2)
 library(glue)
 
-package_names <- "validation"
+package_names <- "_validation"
 figure_path <- glue("src/{package_names}/figures")
 
 atime::atime
