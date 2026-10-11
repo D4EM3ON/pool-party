@@ -22,7 +22,7 @@
 | `SAGx::pava()` | $N$ | $N^2$ | | $N$ | $N^2$ | |
 | `sandwich::pava.blocks()` | $N$ | $N^2$ | | $N$ | $N^2$ | |
 | `smacof:::pavasmacof()` | $N$ | $N^2$ | | $N$ | $N^2$ | |
-| `smacof:::wmonreg` | $N$ | $N$ | $N$ | $N$ | $N^2$ | |
+| `smacof:::wmonreg()` | $N$ | $N$ | $N$ | $N$ | $N^2$ | |
 | `spsurvey::isotonic()` | $N$ | $N^2$ | | $N$ | $N^2$ | |
 | `stats::isoreg()` | $N$ | $N\log N$ | | $N$ | $N^2$ | |
 | `UniIsoRegression::reg_1d()` | $N$ | $N\log N$ | | $N$ | $N\log N$ | |

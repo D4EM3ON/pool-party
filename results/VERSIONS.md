@@ -12,7 +12,7 @@
 | `intcox::intcox.pavaC()` | 0.9.3 | 2013-02-25 |
 | `SAGx::pava()` | 1.64.0 | 2020-10-27 |
 | `smacof:::pavasmacof()` | 2.1-7 | 2024-10-10 |
-| `smacof:::wmonreg` | 2.1-7 | 2024-10-10 |
+| `smacof:::wmonreg()` | 2.1-7 | 2024-10-10 |
 | `isotone::gpava()` | 1.1-2 | 2025-05-22 |
 | `quadprog::solve.QP()` | 1.5-8 | 2019-11-20 |
 | `monotone::monotone()` | 0.1.2 | 2022-05-25 |
