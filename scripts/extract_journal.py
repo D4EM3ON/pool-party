@@ -4,13 +4,18 @@
 
 Regenerate extracted_hours.csv and extracted_journal.md from entries/*.md.
 
+Images pasted next to the entries (entries/*.png, ...) are first moved into
+entries/images/, and the links pointing at them in entries/*.md are rewritten,
+so entries/ only holds markdown files.
+
 Every work session is logged as one markdown file in entries/ following
 entries/_template.md. This script is the single source of truth for the two
 aggregate files at the repo root, which must never be edited by hand.
 
 Usage:
     python3 scripts/extract_journal.py            # write both files
-    python3 scripts/extract_journal.py --check    # exit 1 if they are stale
+    python3 scripts/extract_journal.py --check    # exit 1 if they are stale or
+                                                  # images still need moving
 """
 
 from __future__ import annotations
@@ -24,12 +29,14 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import NoReturn
+from urllib.parse import quote, unquote
 
 TARGET_HOURS = 270  # total hours budgeted for the project
 JOURNAL_TITLE = "# Journal entries for the Pool Party project"
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 ENTRIES_DIR = REPO_ROOT / "entries"
+IMAGES_DIR = ENTRIES_DIR / "images"
 HOURS_CSV = REPO_ROOT / "extracted_hours.csv"
 JOURNAL_MD = REPO_ROOT / "extracted_journal.md"
 
@@ -47,6 +54,9 @@ HTML_IMAGE_RE = re.compile(
 # A scheme, a protocol-relative or root-relative path, or a bare fragment:
 # already resolvable as written, so it must be left alone.
 ABSOLUTE_TARGET_RE = re.compile(r"^(?:[A-Za-z][A-Za-z0-9+.-]*:|//|/|#)")
+IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp"}
+# Trailing "-N" of a pasted image name, e.g. "-3" in "image-3".
+NUMBERED_STEM_RE = re.compile(r"-\d+$")
 
 # Section heading a slice of body text starts at, matched case-insensitively.
 DESCRIPTION_HEADINGS = ("description",)
@@ -114,6 +124,77 @@ def rewrite_image_paths(text: str, path: Path) -> str:
         return f"{prefix}{posixpath.normpath(f'{base}/{target}')}{suffix}"
 
     return HTML_IMAGE_RE.sub(relocate, MD_IMAGE_RE.sub(relocate, text))
+
+
+def plan_image_moves() -> dict[Path, Path]:
+    """Map every image sitting directly in entries/ to its spot in entries/images/.
+
+    Editors paste images next to the markdown file with names like image-3.png,
+    so a fresh paste can clash with an image moved earlier: the clashing one
+    takes the lowest free number instead of overwriting it, e.g. a new
+    image-1.png becomes image-51.png when image-50.png and image-52.png exist
+    but image-51.png does not (and every number below 50 is taken).
+    """
+    sources = sorted(
+        p for p in ENTRIES_DIR.iterdir()
+        if p.is_file() and p.suffix.lower() in IMAGE_SUFFIXES
+    )
+    taken = {p.name for p in IMAGES_DIR.iterdir()} if IMAGES_DIR.is_dir() else set()
+    moves: dict[Path, Path] = {}
+    for source in sources:
+        name = source.name
+        if name in taken:
+            base = NUMBERED_STEM_RE.sub("", source.stem)
+            numbers = {
+                int(match.group(1))
+                for match in (
+                    re.match(rf"^{re.escape(base)}-(\d+)(\.[^.]+)$", t) for t in taken
+                )
+                if match and match.group(2).lower() in IMAGE_SUFFIXES
+            }
+            free = 1
+            while free in numbers:
+                free += 1
+            name = f"{base}-{free}{source.suffix}"
+        taken.add(name)
+        moves[source] = IMAGES_DIR / name
+    return moves
+
+
+def relink_images(text: str, path: Path, moves: dict[Path, Path]) -> str:
+    """Point the image links of the markdown file at `path` to their new location."""
+    def relink(match: re.Match[str]) -> str:
+        prefix, target, suffix = match.groups()
+        if ABSOLUTE_TARGET_RE.match(target):
+            return match.group(0)
+        resolved = Path(posixpath.normpath((path.parent / unquote(target)).as_posix()))
+        if resolved not in moves:
+            return match.group(0)
+        new_target = posixpath.relpath(moves[resolved].as_posix(), path.parent.as_posix())
+        return f"{prefix}{quote(new_target)}{suffix}"
+
+    return HTML_IMAGE_RE.sub(relink, MD_IMAGE_RE.sub(relink, text))
+
+
+def organize_images(check_only: bool) -> int:
+    """Move loose images into entries/images/ and fix the links to them.
+
+    Returns how many images were (or, with `check_only`, would be) moved.
+    """
+    moves = plan_image_moves()
+    if not moves or check_only:
+        return len(moves)
+
+    for md_path in sorted(ENTRIES_DIR.glob("*.md")):
+        text = md_path.read_text(encoding="utf-8")
+        relinked = relink_images(text, md_path, moves)
+        if relinked != text:
+            md_path.write_text(relinked, encoding="utf-8")
+
+    IMAGES_DIR.mkdir(exist_ok=True)
+    for source, destination in moves.items():
+        source.rename(destination)
+    return len(moves)
 
 
 def parse_entry(path: Path) -> Entry:
@@ -219,6 +300,17 @@ def main(argv: list[str]) -> int:
     if unknown:
         print(f"usage: {Path(argv[0]).name} [--check]", file=sys.stderr)
         return 2
+
+    if not ENTRIES_DIR.is_dir():
+        print(f"error: {ENTRIES_DIR} does not exist", file=sys.stderr)
+        return 1
+    moved = organize_images(check_only)
+    if moved and check_only:
+        print(f"stale: {moved} image(s) in entries/ must move to entries/images/ "
+              f"(run scripts/extract_journal.py)", file=sys.stderr)
+        return 1
+    if moved:
+        print(f"moved {moved} image(s) to entries/images/")
 
     entries = collect_entries()
     outputs = {

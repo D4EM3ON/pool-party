@@ -9,13 +9,67 @@
 - Add a bunch of extra PAVA functions from Claude research agents
 - Continue adding information to README table
 
+### Annex:
+### Results for Busing (2022) functions:
+
+#### `density-friendly`
+
+![alt text](entries/images/image-38.png)
+![alt text](entries/images/image-39.png)
+
+#### `fdrtool` (addition of monotone::legacy comparison)
+![alt text](entries/images/image-40.png)
+
+#### `iso` (addition of monotone::legacy comparison)
+![alt text](entries/images/image-41.png)
+
+#### `jbkpava`
+![alt text](entries/images/image-42.png)
+![alt text](entries/images/image-43.png)
+
+#### `monotone_amalgm`
+![alt text](entries/images/image-44.png)
+![alt text](entries/images/image-45.png)
+
+#### `monotone_fitm`
+![alt text](entries/images/image-46.png)
+![alt text](entries/images/image-47.png)
+
+#### `monotone_inplacepava`
+![alt text](entries/images/image-48.png)
+![alt text](entries/images/image-49.png)
+
+#### `monotone_linearpava`
+![alt text](entries/images/image-50.png)
+![alt text](entries/images/image-51.png)
+
+#### `monotone_pav`
+![alt text](entries/images/image-52.png)
+![alt text](entries/images/image-53.png)
+
+#### `monotone_pooledpava`
+![alt text](entries/images/image-54.png)
+![alt text](entries/images/image-55.png)
+
+#### `smacof_wmonreg`
+![alt text](entries/images/image-56.png)
+![alt text](entries/images/image-1-1.png)
+
+#### `spsurvey`
+![alt text](entries/images/image-2-1.png)
+![alt text](entries/images/image-3-1.png)
+
+#### `stats` (addition of monotone::legacy comparison)
+![alt text](entries/images/image-4-1.png)
+
+#### `uniisoregression`
+![alt text](entries/images/image-5-1.png)
+![alt text](entries/images/image-6-1.png)
+
 ## 2026-10-10: 1h
 ### Description:
 - Continuation d'ajout des résultats des fonctions qu'on avait pas un peu partout (principalement des ajouts au readme)
 - Rouler la validation sur tous les nouveaux algos
-
-### Annex:
-### Results for Busing (2022) functions:
 
 ## 2026-10-09: 6h
 ### Description:
@@ -37,43 +91,43 @@
 ### Results for all R packages according to different datasets on entry
 
 #### `cir`
-![alt text](entries/image-25.png)
+![alt text](entries/images/image-25.png)
 
 #### `clue`
-![alt text](entries/image-26.png)
+![alt text](entries/images/image-26.png)
 
 #### `directlabels`
-![alt text](entries/image-27.png)
+![alt text](entries/images/image-27.png)
 
 #### `fdrtool`
-![alt text](entries/image-28.png)
+![alt text](entries/images/image-28.png)
 
 #### `intcox`
-![alt text](entries/image-29.png)
+![alt text](entries/images/image-29.png)
 
 #### `iso`
-![alt text](entries/image-30.png)
+![alt text](entries/images/image-30.png)
 
 #### `isotone`
-![alt text](entries/image-31.png)
+![alt text](entries/images/image-31.png)
 
 #### `logcondens`
-![alt text](entries/image-32.png)
+![alt text](entries/images/image-32.png)
 
 #### `monotone`
-![alt text](entries/image-33.png)
+![alt text](entries/images/image-33.png)
 
 #### `sagx`
-![alt text](entries/image-34.png)
+![alt text](entries/images/image-34.png)
 
 #### `sandwich`
-![alt text](entries/image-35.png)
+![alt text](entries/images/image-35.png)
 
 #### `smacof`
-![alt text](entries/image-36.png)
+![alt text](entries/images/image-36.png)
 
 #### `stats`
-![alt text](entries/image-37.png)
+![alt text](entries/images/image-37.png)
 
 ## 2026-09-29: 4h
 ### Description:
@@ -108,30 +162,30 @@
 
 #### `sklearn/scipy`
 scipy is not present here, as it's `isotonic_regression` function arrived later.
-![alt text](entries/image-23.png)
+![alt text](entries/images/image-23.png)
 
 #### `cir/iso/clue/sagx`
 `SAGx` is not present in these results, as it was already a deprecated package
-![alt text](entries/image-24.png)
+![alt text](entries/images/image-24.png)
 
 #### `fdrtool`
-![alt text](entries/image-22.png)
+![alt text](entries/images/image-22.png)
 
 #### `intcox`
 Not present here, as intcox was already a deprecated package
 
 #### `isotone`
-![alt text](entries/image-21.png)
+![alt text](entries/images/image-21.png)
 
 #### `logcondens`
-![alt text](entries/image-20.png)
+![alt text](entries/images/image-20.png)
 
 #### `sandwich`
-![alt text](entries/image-19.png)
+![alt text](entries/images/image-19.png)
 #### `stats/directlabels/monotone/smacof`
 `directlabels` is not present here, as it's `isoreg` function only appeared in `directlabels` release 2026.8.27
 
-![alt text](entries/image-18.png)
+![alt text](entries/images/image-18.png)
 
 ## 2026-09-17: 3.5h
 ### Description:
@@ -143,28 +197,28 @@ Not present here, as intcox was already a deprecated package
 ### Full results (current-day, latest versions)
 
 `sklearn/scipy`
-![alt text](entries/image-10.png)
+![alt text](entries/images/image-10.png)
 
 `cir/iso/clue/sagx`
-![alt text](entries/image-11.png)
+![alt text](entries/images/image-11.png)
 
 `fdrtool`
-![alt text](entries/image-12.png)
+![alt text](entries/images/image-12.png)
 
 `intcox`
-![alt text](entries/image-13.png)
+![alt text](entries/images/image-13.png)
 
 `isotone`
-![alt text](entries/image-14.png)
+![alt text](entries/images/image-14.png)
 
 `logcondens`
-![alt text](entries/image-15.png)
+![alt text](entries/images/image-15.png)
 
 `sandwich`
-![alt text](entries/image-16.png)
+![alt text](entries/images/image-16.png)
 
 `stats/directlabels/monotone/smacof`
-![alt text](entries/image-17.png)
+![alt text](entries/images/image-17.png)
 
 ## 2026-09-16: 1.5h
 ### Description:
@@ -178,7 +232,7 @@ Not present here, as intcox was already a deprecated package
 
 ### Annex:
 ### `isotone`
-![alt text](entries/image-9.png)
+![alt text](entries/images/image-9.png)
 
 ## 2026-09-11: 1h
 ### Description:
@@ -193,25 +247,25 @@ Not present here, as intcox was already a deprecated package
 
 ### Annex:
 ### `SAGx`
-![alt text](entries/image-2.png)
+![alt text](entries/images/image-2.png)
 
 ### `fdrtool`
-![alt text](entries/image-3.png)
+![alt text](entries/images/image-3.png)
 
 ### `logcondens`
-![alt text](entries/image-4.png)
+![alt text](entries/images/image-4.png)
 
 ### `sandwich`
-![alt text](entries/image-5.png)
+![alt text](entries/images/image-5.png)
 
 ### `intcox`
-![alt text](entries/image-6.png)
+![alt text](entries/images/image-6.png)
 
 ### `smacof`
-![alt text](entries/image-7.png)
+![alt text](entries/images/image-7.png)
 
 ### `scipy` and `sklearn`
-![alt text](entries/image-8.png)
+![alt text](entries/images/image-8.png)
 
 ## 2026-09-08: 3h
 ### Description:
@@ -219,7 +273,7 @@ Not present here, as intcox was already a deprecated package
 - Add `cir`, `iso`, as well as `clue` PAVA functions results
 
 ### Annex:
-![alt text](entries/image-1.png)
+![alt text](entries/images/image-1.png)
 
 ## 2026-09-07: 4h
 ### Description:
@@ -228,7 +282,7 @@ Not present here, as intcox was already a deprecated package
 - Start working on table, added results for `stats`, `monotone`, `directlabels` packages
 
 ### Annex:
-![alt text](entries/image.png)
+![alt text](entries/images/image.png)
 
 ## 2026-09-04: 2h
 ### Description:

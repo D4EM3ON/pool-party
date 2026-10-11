@@ -31,7 +31,7 @@ extract-journal:
   script:
   - git config --global --add safe.directory "$CI_PROJECT_DIR"
   - python scripts/extract_journal.py
-  - git add extracted_hours.csv extracted_journal.md
+  - git add --all entries extracted_hours.csv extracted_journal.md
   - |
     if git diff --cached --quiet; then
       echo "Extracted files already up to date."

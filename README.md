@@ -30,7 +30,7 @@
 | R | R | [`spsurvey::isotonic()`](https://github.com/USEPA/spsurvey) | [2019-2021](https://github.com/USEPA/spsurvey/commits/main/R/isotonic.R) | no | yes | no |
 | R | C | [`UniIsoRegression::reg_1d()`](https://rdrr.io/cran/UniIsoRegression/man/reg_1d.html) | [2017](https://cran.r-project.org/web/packages/UniIsoRegression/index.html)\*\* | yes | no | no |
 
-Space and time complexities for each function are listed in [FUNCTIONS.md](FUNCTIONS.md).
+Space and time complexities for each function are listed in [FUNCTIONS.md](results/FUNCTIONS.md).
 
 NA in complexities column means either the function was not available pre-2021, or we already use the 
 
@@ -47,7 +47,7 @@ NA in complexities column means either the function was not available pre-2021, 
 
 We assume `quadprog::solve.QP` to be the source of truth here. For all of its results, all functions in all packages have (within approximately $1.5\times 10^{-8}$) the same results.
 
-Versions and dates for the packages and functions used for the results are available in [VERSIONS.md](VERSIONS.md)
+Versions and dates for the packages and functions used for the results are available in [VERSIONS.md](results/VERSIONS.md)
 
 [monotone-doc]: https://cran.r-project.org/web/packages/monotone/refman/monotone.html
 [monotone-date]: https://cran.r-project.org/web/packages/monotone/index.html
