@@ -14,6 +14,9 @@
 - Continuation d'ajout des résultats des fonctions qu'on avait pas un peu partout (principalement des ajouts au readme)
 - Rouler la validation sur tous les nouveaux algos
 
+### Annex:
+### Results for Busing (2022) functions:
+
 ## 2026-10-09: 6h
 ### Description:
 - Rencontre Pr. Hocking
