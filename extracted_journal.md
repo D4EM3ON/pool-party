@@ -24,11 +24,11 @@
 ![alt text](entries/images/image-41.png)
 
 #### `jbkpava`
-![alt text](entries/images/image-42.png)
+![alt text](entries/images/image-61.png)
 ![alt text](entries/images/image-43.png)
 
 #### `monotone_amalgm`
-![alt text](entries/images/image-44.png)
+![alt text](entries/images/image-57.png)
 ![alt text](entries/images/image-45.png)
 
 #### `monotone_fitm`
@@ -37,10 +37,10 @@
 
 #### `monotone_inplacepava`
 ![alt text](entries/images/image-48.png)
-![alt text](entries/images/image-49.png)
+![alt text](entries/images/image-44.png)
 
 #### `monotone_linearpava`
-![alt text](entries/images/image-50.png)
+![alt text](entries/images/image-42.png)
 ![alt text](entries/images/image-51.png)
 
 #### `monotone_pav`
@@ -49,22 +49,22 @@
 
 #### `monotone_pooledpava`
 ![alt text](entries/images/image-54.png)
-![alt text](entries/images/image-55.png)
+![alt text](entries/images/image-51.png)
 
 #### `smacof_wmonreg`
 ![alt text](entries/images/image-56.png)
-![alt text](entries/images/image-1-1.png)
+![alt text](entries/images/image-55.png)
 
 #### `spsurvey`
-![alt text](entries/images/image-2-1.png)
-![alt text](entries/images/image-3-1.png)
+![alt text](entries/images/image-58.png)
+![alt text](entries/images/image-59.png)
 
 #### `stats` (addition of monotone::legacy comparison)
-![alt text](entries/images/image-4-1.png)
+![alt text](entries/images/image-60.png)
 
 #### `uniisoregression`
-![alt text](entries/images/image-5-1.png)
-![alt text](entries/images/image-6-1.png)
+![alt text](entries/images/image-49.png)
+![alt text](entries/images/image-62.png)
 
 ## 2026-10-10: 1h
 ### Description:
