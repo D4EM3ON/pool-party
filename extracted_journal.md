@@ -1,10 +1,32 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 66 h (24.4 %)
+## Total hours currently worked : 84 h (31.1 %)
 
-## Total hours worked this week : 6 h
+## Total hours worked this week : 11 h
 
-## 2026-10-01: 2h
+## 2026-10-11: 4h
+### Description:
+- Add a bunch of extra PAVA functions from Claude research agents
+- Continue adding information to README table
+
+## 2026-10-10: 1h
+### Description:
+- Continuation d'ajout des résultats des fonctions qu'on avait pas un peu partout (principalement des ajouts au readme)
+- Rouler la validation sur tous les nouveaux algos
+
+## 2026-10-09: 6h
+### Description:
+- Rencontre Pr. Hocking
+- Finalisation d'ajout des fonctions du papier de Busing (2022) que nous n'avions pas
+- Ajout des résultats de ces fonctions un peu partout
+
+## 2026-10-02: 6h
+### Description:
+- Rencontre Pr. Hocking
+- Ajout des heures dans le gestionnaire de projet web
+- Ajout de plusieurs fonctions que nous n'avions pas du papier de Busing (2022)
+
+## 2026-10-01: 3h
 ### Description:
 - Present results in FUNCTIONS.md for $O$, $\Omega$ and $\Theta$ for the cases we looked at
 
