@@ -1,17 +1,9 @@
 # Todo
 
-- [ ] Add tous les algos du papier de 2022 qu'on a pas, partout
-  - [x] Ajouter code non existant sauf sous monotone::legacy
-  - [ ] Comparer tout ce qu'on a avec les monotone::legacy() (qui sont disponibles)
-
-- [ ] Trouver (??) et lire Van Waning (1976)
-
-- [ ] Pour colonne Busing 2022 ajouter complexite temporelle dite
+- [ ] Comparer les 3 fonctions qui étaient dans Mair 2009 et Busing 2022 (iso, fdrtool, stats) ce qu'on a avec les monotone::legacy()
 
 - [ ] Trouver les informations nécessaires pour intcox comme si on remplissait la Table 2 de Busing (2022)
   - [ ] Add intcox to monotone.iterations public package from Pr. Hocking (réfléchir, regarder ce que ça fait, pourquoi et comment, comment la convertir)
-
-- [ ] Check if there are more functions in R or in Python that implement pava other than what there currently is in the README.
 
 - [ ] Look at section 4 of the 2022 O(n) paper and compare with our results - are they the same?
   - [ ] Look at the $n^2$ codes in section 4.1, analyze if some are $n$ vs $n^2$ in some cases (with different data in). See more info about data comparison in this case here: https://github.com/tdhock/sparse-label-positions/blob/main/figure-atime-cases-data.R
@@ -43,3 +35,13 @@
 - [x] Add errors if there are any (for sandwich for example)
 
 - [x] Jaser semaine prochaine: comment compter le nombre d'iterations pour les algos de monotone.iterations::
+
+- [x] Add tous les algos du papier de 2022 qu'on a pas, partout
+  - [x] Ajouter code non existant sauf sous monotone::legacy
+
+- [x] Pour colonne Busing 2022 ajouter complexite temporelle dite
+
+- [x] Check if there are more functions in R or in Python that implement pava other than what there currently is in the README.
+
+- [x] Trouver (??) et lire Van Waning (1976) (NON DISPO PERSONNE NE L'A)
+  - [x] Courriel envoyé à Busing, voir sa réponse
