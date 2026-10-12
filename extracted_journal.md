@@ -1,13 +1,18 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 84 h (31.1 %)
+## Total hours currently worked : 88 h (32.6 %)
 
-## Total hours worked this week : 11 h
+## Total hours worked this week : 4 h
+
+## 2026-10-12: 4h
+### Description:
+- Extend table 2 from Busing (2022) with intcox
 
 ## 2026-10-11: 4h
 ### Description:
 - Add a bunch of extra PAVA functions from Claude research agents
-- Continue adding information to README table
+- Wrap up adding information to README table
+- Look into Van Waning WE (1976) but to no avail
 
 ### Annex:
 ### Results for Busing (2022) functions:
