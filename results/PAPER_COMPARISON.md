@@ -51,3 +51,4 @@
 | `reg1dl2()` | 2017 | C++ | Yes | $3n$ | $2n$ | No | 0 | $k$ |
 | `jbkpava()` | 2017 | C | Yes | $2n$ | $3n$ | No | 1 | $k$ |
 | `monotone()` | 2019 | C | Yes | - | $n$ | No | $k$ | $k$ |
+| `intcox()` | 2005 | C | Yes | $2n$ | $n$ | No | 0 | $k$ |
