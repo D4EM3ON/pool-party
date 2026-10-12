@@ -1,10 +1,5 @@
 # Todo
 
-- [ ] Comparer les 3 fonctions qui étaient dans Mair 2009 et Busing 2022 (iso, fdrtool, stats) ce qu'on a avec les monotone::legacy()
-
-- [ ] Trouver les informations nécessaires pour intcox comme si on remplissait la Table 2 de Busing (2022)
-  - [ ] Add intcox to monotone.iterations public package from Pr. Hocking (réfléchir, regarder ce que ça fait, pourquoi et comment, comment la convertir)
-
 - [ ] Look at section 4 of the 2022 O(n) paper and compare with our results - are they the same?
   - [ ] Look at the $n^2$ codes in section 4.1, analyze if some are $n$ vs $n^2$ in some cases (with different data in). See more info about data comparison in this case here: https://github.com/tdhock/sparse-label-positions/blob/main/figure-atime-cases-data.R
   - [ ] Look at the legacy code in the appendix of the paper (monotone::legacy), and compare them to their current-day implementations - do they give the same results?
@@ -45,3 +40,9 @@
 
 - [x] Trouver (??) et lire Van Waning (1976) (NON DISPO PERSONNE NE L'A)
   - [x] Courriel envoyé à Busing, voir sa réponse
+
+- [x] Trouver les informations nécessaires pour intcox comme si on remplissait la Table 2 de Busing (2022)
+
+- [x] Add intcox to monotone.iterations public package from Pr. Hocking (réfléchir, regarder ce que ça fait, pourquoi et comment, comment la convertir)
+
+- [x] Comparer les 3 fonctions qui étaient dans Mair 2009 et Busing 2022 (iso, fdrtool, stats) ce qu'on a avec les monotone::legacy()

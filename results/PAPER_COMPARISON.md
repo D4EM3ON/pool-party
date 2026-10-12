@@ -32,6 +32,21 @@
 
 \* If present, will represent the big O notation that was used in the paper
 
+For the three different functions that were present in both papers, here are more detailed results about them, compared to their `monotone::legacy` implementation. It is to be noted however that even if the results differ, it is only in orders of constants times their complexity ($c \cdot O(f(n))$), $O(f(n))$ being unchanged overall.
+
+#### `fdrtool`:
+The legacy implementation, for every dataset we put it through, was always faster and took up less memory than the original implementation:
+![alt text](../entries/images/image-40.png)
+
+#### `iso`:
+This package was a bit more split: functions from the original implementation usually took up less memory, with the exception of the cliff dataset and the up-only dataset, while the legacy implementation was faster in every case except for the up then down dataset.
+![alt text](../entries/images/image-41.png)
+
+#### `stats`:
+Memory-wise, the original implementation takes up less memory than the legacy version for every dataset, while the legacy implementation is faster for every dataset except for the up-only data.
+![alt text](../entries/images/image-60.png)
+
+
 # Busing (2022) Table 2 - extended
 
 | Implementation | Year | Original language | Allows weights | Auxiliary floats | Auxiliary integers | Direct updates | Forward checks | Backward checks |
