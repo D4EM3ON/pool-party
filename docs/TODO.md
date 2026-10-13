@@ -6,8 +6,6 @@
 
 - [ ] Regarder pour amalgm() si on a un pire cas pour lui que les direct updates n'ont pas
 
-- [ ] Faire tourner tout ceux qu'on a qui sont lineaires pour trouver celui avec le meilleur temps constant
-
 # Completed
 
 - [x] Confirm if all of them give the same result (compare all results to quadprog)
@@ -46,3 +44,5 @@
 - [x] Add intcox to monotone.iterations public package from Pr. Hocking (réfléchir, regarder ce que ça fait, pourquoi et comment, comment la convertir)
 
 - [x] Comparer les 3 fonctions qui étaient dans Mair 2009 et Busing 2022 (iso, fdrtool, stats) ce qu'on a avec les monotone::legacy()
+
+- [x] Faire tourner tout ceux qu'on a qui sont lineaires pour trouver celui avec le meilleur temps constant

@@ -27,7 +27,8 @@ make_data <- function(
   isotonic_functions,
   add_n = 0,
   seconds_limit = 1,
-  max_n = 10^7
+  max_n = 10^7,
+  keep_result = TRUE
 ) {
   (expr_list <- atime::atime_grid(
     list(PKG = names(isotonic_functions), DATA = names(data_list)),
@@ -49,13 +50,13 @@ make_data <- function(
     },
     expr.list = expr_list,
     seconds.limit = seconds_limit,
-    result = TRUE
+    result = keep_result
   )
   plot(ares)
 
 
   # Plots only need the measurements without the result and solution columns
   # (dropped for space savings)
-  ares$measurements[, result := NULL]
+  if (keep_result) ares$measurements[, result := NULL]
   saveRDS(ares, glue("src/{package_names}/data/figure-data.rds"))
 }
