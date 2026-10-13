@@ -1,8 +1,59 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 88 h (32.6 %)
+## Total hours currently worked : 91 h (33.7 %)
 
-## Total hours worked this week : 4 h
+## Total hours worked this week : 7 h
+
+## 2026-10-13: 3h
+### Description:
+- Check all $\approx O(N)$ (time complexity-wise) functions against each other to find the best function overall. Add the results here
+- Fix PR comment on PR done yesterday on monotone.iterations
+- Add dataset visualisation
+
+### Annex:
+Functions tested: 
+```r
+density_friendly_pava,
+directlabels::isoreg_dp,
+fdrtool::monoreg,
+intcox:::intcox.pavaC,
+jbkpava,
+logcondens::isoMean,
+monotone::monotone,
+monotone::legacy,
+monotone::legacy,
+monotone::legacy,
+UniIsoRegression::reg_1d
+```
+
+Results are against these datasets:
+![alt text](entries/images/image-75.png)
+
+The plots are always relative to the function that was the lowest at that N, which is why they are at 1x-3x. We only plot the best 5 functions for each dataset. If three functions are tied for fifth, the algorithm chooses arbitrarily one of them. 
+
+#### cliff
+![alt text](entries/images/image-63.png)
+![alt text](entries/images/image-67.png)
+
+#### down
+![alt text](entries/images/image-68.png)
+![alt text](entries/images/image-69.png)
+
+#### normal
+![alt text](entries/images/image-70.png)
+![alt text](entries/images/image-71.png)
+
+#### up-down
+![alt text](entries/images/image-72.png)
+![alt text](entries/images/image-73.png)
+
+#### up
+![alt text](entries/images/image-74.png)
+![alt text](entries/images/image-64.png)
+
+#### zigzag
+![alt text](entries/images/image-65.png)
+![alt text](entries/images/image-66.png)
 
 ## 2026-10-12: 4h
 ### Description:
