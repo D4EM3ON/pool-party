@@ -1,8 +1,47 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 91 h (33.7 %)
+## Total hours currently worked : 100 h (37.0 %)
 
-## Total hours worked this week : 7 h
+## Total hours worked this week : 3 h
+
+## 2026-10-22: 3h
+### Description:
+- Add no/absent to paper comparison
+- Modify O/Omega in FUNCTIONS.md to best and worse time/space
+- Wrap up documentation for new functions
+- Note prompts used to get results for _best and for EXTRA_PAVA_FUNCTIONS.md
+- Add latex base
+
+## 2026-10-15: 2h
+### Description:
+- Prepare meeting
+- Meeting with Pr. Hocking
+- Follow up with TODOs throughout the day
+
+## 2026-10-14: 4h
+### Description:
+- Look at all functions that were described in EXTRA_PAVA_FUNCTIONS.md
+- Condense the above-mentioned md file
+- Fix comments on PR for adding intcox to monotone.iterations
+- Add all relevant O(N) functions from EXTRA_PAVA_FUNCTIONS.md as code, as well as results here, as well as results in FUNCTIONS.md, as well as validating their return in _validation/, running them via _best/
+- Describe in the README the steps necessary to adding a function and its results
+
+### Annex:
+### `orthomtl`
+![alt text](entries/images/image-83.png)
+![alt text](entries/images/image-76.png)
+
+### `sffdr`
+![alt text](entries/images/image-77.png)
+![alt text](entries/images/image-78.png)
+
+### `tabicl2`
+![alt text](entries/images/image-79.png)
+![alt text](entries/images/image-80.png)
+
+### `toxstats`
+![alt text](entries/images/image-81.png)
+![alt text](entries/images/image-82.png)
 
 ## 2026-10-13: 3h
 ### Description:
