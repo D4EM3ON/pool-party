@@ -30,10 +30,19 @@ isotonic_functions <- list(
   monotone_linearpava = function(x) monotone::legacy(x, number = 10),
   monotone_pav = function(x) monotone::legacy(x, number = 4),
   monotone_pooledpava = function(x) monotone::legacy(x, number = 9),
+  # Removed, as it produces an error as mentioned in README.md
+  # orthomtl = function(x) {
+  #   shift <- min(x) - 1
+  #   rev(orthoMTL::nnmaxheap_C(rev(x) - shift)) + shift
+  # },
   sagx = SAGx::pava,
   sandwich = function(x, w) {
     fit <- sandwich::pava.blocks(x)
     rep(fit$x, fit$blocks)
+  },
+  sfffdr = function(x) {
+    n <- length(x)
+    -sffdr::monoSmooth_pava(seq_len(n) / n, -x, rep(1L, n))
   },
   smacof_pavasmacof = smacof:::pavasmacof,
   smacof_wmonreg = function(x) {
@@ -41,7 +50,12 @@ isotonic_functions <- list(
        as.integer(length(x)))[[1]]
   },
   spsurvey = function(x) spsurvey::isotonic(x, -Inf, Inf),
-  stats = function(x) isoreg(x)$yf # ,
+  stats = function(x) isoreg(x)$yf,
+  tabicl2 = function(x) {
+    y <- torch::torch_tensor(x, dtype = torch::torch_float64())
+    as.numeric(TabICL2:::.pava_single(y))
+  },
+  toxstats = function(x) toxstats:::pava(x, rep(1, length(x))) # ,
   # Removed, as it produces an error as mentioned in `README.md`
   # uniisoregression = function(x) {
   #   UniIsoRegression::reg_1d(x, rep(1, length(x)), metric = 2)

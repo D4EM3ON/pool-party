@@ -6,6 +6,15 @@
 
 - [ ] Regarder pour amalgm() si on a un pire cas pour lui que les direct updates n'ont pas
 
+- [ ] Faire analyse théorique de mémoire pour les meilleures fonctions
+
+- [ ] Augmenter table 2 Busing avec les auxiliary floats/integers de tout le monde qui ne sont pas dedans
+
+- [ ] Wrap up data in _best, add iterations (maybe under _iterations?), for the best functions
+
+- [ ] Remove comparison to baseline in _best, take the 5 best and plot them
+
+
 # Completed
 
 - [x] Confirm if all of them give the same result (compare all results to quadprog)
@@ -29,6 +38,7 @@
 
 - [x] Jaser semaine prochaine: comment compter le nombre d'iterations pour les algos de monotone.iterations::
 
+
 - [x] Add tous les algos du papier de 2022 qu'on a pas, partout
   - [x] Ajouter code non existant sauf sous monotone::legacy
 
@@ -46,3 +56,13 @@
 - [x] Comparer les 3 fonctions qui étaient dans Mair 2009 et Busing 2022 (iso, fdrtool, stats) ce qu'on a avec les monotone::legacy()
 
 - [x] Faire tourner tout ceux qu'on a qui sont lineaires pour trouver celui avec le meilleur temps constant
+
+- [x] Add des "no" ou "absent" à PAPER_COMPARISON
+
+- [x] Modify O and Omega for worst and best case in FUNCTIONS.md
+
+- [x] Ajouter tous les codes O(n) disponible dans EXTRA_PAVA_FUNCTIONS en R.
+  - [x] En code
+  - [x] Dans la documentation résultante qu'on a
+
+- [x] Noter les prompts utilisés pour la démarche (dans ce cas ci, EXTRA_PAVA_FUNCTIONS et plots de _best)

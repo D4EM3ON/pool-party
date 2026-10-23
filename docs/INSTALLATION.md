@@ -1,4 +1,4 @@
-## How I installed some archived packages
+## How I installed some packages
 
 ### R (archived)
 
@@ -148,6 +148,32 @@ install.packages(
   "https://cran.r-project.org/src/contrib/Archive/directlabels/directlabels_2021.1.13.tar.gz",
   repos = NULL, type = "source"
 )
+```
+
+#### `toxstats`
+```r
+install.packages("remotes")
+remotes::install_github("open-AIMS/toxstats")
+```
+
+#### `orthoMTL`
+```r
+install.packages("remotes")
+remotes::install_github("Novartis/orthoMTL")
+```
+
+#### `sffdr`
+```r
+install.packages("BiocManager", repos = "https://cloud.r-project.org")
+BiocManager::install("qvalue")
+install.packages("sffdr")
+```
+
+#### `TabICL2`
+```r
+install.packages("remotes")
+remotes::install_github("cregouby/TabICL2")
+torch::install_torch()
 ```
 
 

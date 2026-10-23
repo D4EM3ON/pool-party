@@ -13,3 +13,12 @@ data/figures/
 
 # Mac 
 .DS_Store
+
+# Latex output
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz

@@ -2,33 +2,37 @@
 
 | Function | Busing 2022?\* | Mair 2009? |
 | :-: | :-: | :-: |
-| `cir::oldPAVA()` | | yes |
-| `clue:::pava()` | | yes |
-| `density_friendly_pava()` | $N$ | |
-| `directlabels::isoreg_dp()` | | |
+| `cir::oldPAVA()` | no | yes |
+| `clue:::pava()` | no | yes |
+| `density_friendly_pava()` | $N$ | no |
+| `directlabels::isoreg_dp()` | no | no |
 | `fdrtool::monoreg()` | $N$ | yes |
 | `Iso::pava()` | $N^2$ | yes |
-| `intcox:::intcox.pavaC()` | | yes |
-| `isotone::gpava()` | | |
-| `jbkpava()` | $N$ | |
-| `logcondens::isoMean()` | | yes |
-| `monotone::legacy(number = 3)` (`amalgm()`) | $N^2$ | |
-| `monotone::legacy(number = 1)` (`fitm()`) | $N$ | |
-| `monotone::legacy(number = 11)` (`inplace_pava()`) | $N$ | |
-| `monotone::legacy(number = 10)` (`linear_pava()`) | $N^2$ | |
-| `monotone::legacy(number = 4)` (`pav()`) | $N^2$ | |
-| `monotone::legacy(number = 9)` (`pooled_pava()`) | $N$ | |
-| `monotone::monotone()` | $N$ | |
-| `sklearn.isotonic.isotonic_regression` | | |
-| `scipy.optimize.isotonic_regression` | | |
-| `SAGx::pava()` | | yes |
-| `quadprog::solve.QP()` | | |
-| `sandwich::pava.blocks()` | | yes |
-| `smacof:::pavasmacof()` | | yes |
-| `smacof:::wmonreg()` | $N^2$ | |
+| `intcox:::intcox.pavaC()` | no | yes |
+| `isotone::gpava()` | no | no |
+| `jbkpava()` | $N$ | no |
+| `logcondens::isoMean()` | no | yes |
+| `monotone::legacy(number = 3)` (`amalgm()`) | $N^2$ | no |
+| `monotone::legacy(number = 1)` (`fitm()`) | $N$ | no |
+| `monotone::legacy(number = 11)` (`inplace_pava()`) | $N$ | no |
+| `monotone::legacy(number = 10)` (`linear_pava()`) | $N^2$ | no |
+| `monotone::legacy(number = 4)` (`pav()`) | $N^2$ | no |
+| `monotone::legacy(number = 9)` (`pooled_pava()`) | $N$ | no |
+| `monotone::monotone()` | $N$ | no |
+| `orthoMTL::nnmaxheap_C()` | no | no |
+| `sklearn.isotonic.isotonic_regression` | no | no |
+| `scipy.optimize.isotonic_regression` | no | no |
+| `SAGx::pava()` | no | yes |
+| `quadprog::solve.QP()` | no | no |
+| `sandwich::pava.blocks()` | no | yes |
+| `sffdr::monoSmooth_pava()` | no | no |
+| `smacof:::pavasmacof()` | no | yes |
+| `smacof:::wmonreg()` | $N^2$ | no |
 | `stats::isoreg()` | $N^2$ | yes |
-| `spsurvey::isotonic()` | $N^2$ | |
-| `UniIsoRegression::reg_1d()` | $N$ | |
+| `spsurvey::isotonic()` | $N^2$ | no |
+| `TabICL2:::.pava_single()` | no | no |
+| `toxstats:::pava()` | no | no |
+| `UniIsoRegression::reg_1d()` | $N$ | no |
 
 \* If present, will represent the big O notation that was used in the paper
 
