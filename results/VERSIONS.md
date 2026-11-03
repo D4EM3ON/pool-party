@@ -25,7 +25,7 @@
 | `smacof:::wmonreg()` | 2.1-7 | 2024-10-10 |
 | `spsurvey::isotonic()` | 4.1.4 | 2020-09-18 |
 | `stats::isoreg()`\* | 4.6.1 | 2026-06-24 |
-| `TabICL2:::.pava_single()`\*\*\* | 0.0.0.9000 | 2026-08-18 |
+| `TabICL2:::.pava_single()`\*\*\* | -- | 2026-08-18 |
 | `toxstats:::pava()`\*\*\* | -- | 2026-09-01 |
 | `UniIsoRegression::reg_1d()` | 0.0-0 | 2017-11-07 |
 

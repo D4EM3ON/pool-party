@@ -8,11 +8,10 @@
 
 - [ ] Faire analyse théorique de mémoire pour les meilleures fonctions
 
-- [ ] Augmenter table 2 Busing avec les auxiliary floats/integers de tout le monde qui ne sont pas dedans
 
 - [ ] Wrap up data in _best, add iterations (maybe under _iterations?), for the best functions
 
-- [ ] Remove comparison to baseline in _best, take the 5 best and plot them
+- [ ] Faire le rapport
 
 
 # Completed
@@ -66,3 +65,9 @@
   - [x] Dans la documentation résultante qu'on a
 
 - [x] Noter les prompts utilisés pour la démarche (dans ce cas ci, EXTRA_PAVA_FUNCTIONS et plots de _best)
+
+- [x] Finaliser les versions
+
+- [x] Remove comparison to baseline in _best, take the 5 best and plot them
+
+- [x] Augmenter table 2 Busing avec les auxiliary floats/integers de tout le monde qui ne sont pas dedans et qui sont parmi les plus efficaces (mettons le top 3-4 qui sortent partout dans _best)

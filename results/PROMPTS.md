@@ -82,3 +82,28 @@ The questions and follow-ups, taken from the Claude Code conversations, that pro
    > can we make the scale even more logarithmic please?
 
 The result is one `figure-<dataset>-seconds.png` and one `figure-<dataset>-kilobytes.png` per dataset (committed in `7788089`).
+
+### 2026-11-03 — figure-pred for the best functions, and an overall figure
+
+1. Replacing the baseline comparison:
+   > peux tu faire ceci pour moi svp? - [ ] Remove comparison to baseline in _best, take the 5 best and plot them
+   >
+   > on parle donc de faire la figure-pred pour tout le monde, au lieu de nouvelles fonctions. fait en sorte que ce soit le plus proche possible de plots.r disponible partout
+
+   `make_references` and `make_pred_plot` were extracted from `make_plots` in `_common/plots.r`, and `_best/plots.r` now writes one `figure-<dataset>-pred.png` per dataset for the 5 best functions, at `seconds = 0.01`. The old `-seconds` and `-kilobytes` figures were removed.
+
+2. Fixing `make_plots`, broken by an `expr_name` argument added to `make_references` in the meantime:
+   > yeah it was meant for that, can you do it please?
+
+3. Fixing the overall figure (a block added by hand to average every dataset), by pasting the error from `source("src/_best/plots.r")`:
+   > Error in vecseq(f__, len__, limit) :
+   > Join results in 6480 rows; more than 1110 = nrow(x)+nrow(i). Check for duplicate key values in i each of which join to the same group in x over and over again. [...]
+
+   The overall block had not averaged the datasets, so each (PKG, N) pair appeared once per dataset and the atime join duplicated the rows. The fix averaged the measurements over `DATA` first.
+
+4. Simplifying the fix:
+   > is there no simpler way to do this?
+
+   The averaging was reduced to the mean of `median`, `min`, `max` and `kilobytes` per (PKG, N), keeping only N reached on every dataset.
+
+The result is one `figure-<dataset>-pred.png` per dataset, plus `figure-overall-pred.png`.

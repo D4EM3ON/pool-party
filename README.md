@@ -49,6 +49,7 @@ NA in complexities column means either the function was not available pre-2021, 
   - The legacy version initializes a vector with all zeros (`mean_vec`), and never sets it out to what it is supposed to be originally (`x`). This causes values that are already in order, in some cases, to be pooled together, becoming wrong whenever the data has values that should not be ppoled.
 - `orthoMTL::nnmaxheap_C()` on version 0.1.0 gives wrong results whenever a pooled block has a single element, even on data that is already in order: `nnmaxheap_C(c(3, 2, 1))` returns `3 3 3`, and its own documented example `nnmaxheap_C(c(5, 3, 3, 1))` returns `5 5 5 1` instead of being unchanged.
   - The PAVA pass itself is correct; the bug is in the final loop that expands the blocks: `for (j in (i + 1):location[i])`. For a single-element block, `location[i] == i`, so `(i + 1):i` counts down to `c(i + 1, i)` instead of being empty, and overwrites the start of the next block with the current value. Using `seq.int(i + 1, length.out = location[i] - i)` would fix it.
+  - This was reported in [orthoMTL#12](https://github.com/Novartis/orthoMTL/issues/12) and is fixed in [v0.1.1](https://github.com/Novartis/orthoMTL/releases/tag/v0.1.1) (2026-10-22). Our results use the version before the fix (commit `dc91503`).
 
 
 We assume `quadprog::solve.QP` to be the source of truth here. For all of its results, all functions in all packages have (within approximately $1.5\times 10^{-8}$) the same results.

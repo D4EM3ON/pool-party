@@ -71,3 +71,4 @@ Memory-wise, the original implementation takes up less memory than the legacy ve
 | `jbkpava()` | 2017 | C | Yes | $2n$ | $3n$ | No | 1 | $k$ |
 | `monotone()` | 2019 | C | Yes | - | $n$ | No | $k$ | $k$ |
 | `intcox()` | 2005 | C | Yes | $2n$ | $n$ | No | 0 | $k$ |
+| `isoreg_dp()` | 2026 | C++ | No | $n$ | $n$ | No | 0 | $k$ |
