@@ -1,4 +1,4 @@
-Question de base: si on améliore le package pour la position des étiquettes, on peut faire appel à un algorithme de PAVA. Cependant, lequel est le plus efficace? Nous avons regardé des papiers, des implémentations. 
+Question de base: si on améliore le package pour la position des étiquettes, on peut faire appel à un algorithme de PAVA. Cependant, lequel est le plus efficace? Nous avons regardé des papiers, des implémentations.
 
 Présenter l'enjeu: algorithme 
 

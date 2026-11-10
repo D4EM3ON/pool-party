@@ -1,10 +1,67 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 100 h (37.0 %)
+## Total hours currently worked : 160 h (59.3 %)
 
-## Total hours worked this week : 3 h
+## Total hours worked this week : 2 h
 
-## 2026-10-22: 3h
+## 2026-11-10: 2h
+### Description:
+- Work on report
+
+## 2026-11-08: 1h
+### Description:
+- Add hours for everything that was missing in the project manager
+
+## 2026-11-06: 6h
+### Description:
+- Work on monotone.iterations
+- Start working on report
+
+## 2026-11-05: 4h
+### Description:
+- Work on monotone iterations
+
+## 2026-11-04: 3h
+### Description:
+- Examine what will need to be done to adapt monotone.iterations to what we want
+- Make list of things we want to do for monotone.iterations
+- Start contemplating background work
+
+## 2026-11-03: 6h
+### Description:
+- update versions.md
+- remove comparison to baseline in _best/ and regenerate everything
+- add directlabels to paper comparison
+
+### Annex:
+### Best results overall
+![alt text](entries/images/image-89.png)
+
+### Best results with top 5 functions for each dataset
+
+#### Cliff:
+![alt text](entries/images/image-90.png)
+
+#### Down:
+![alt text](entries/images/image-84.png)
+
+#### Normal:
+![alt text](entries/images/image-85.png)
+
+#### Up-down:
+![alt text](entries/images/image-86.png)
+
+#### Up:
+![alt text](entries/images/image-87.png)
+
+#### Zigzag:
+![alt text](entries/images/image-88.png)
+
+## 2026-10-23: 2h
+### Description:
+- Rencontre avec Pr. Hocking
+
+## 2026-10-22: 4h
 ### Description:
 - Add no/absent to paper comparison
 - Modify O/Omega in FUNCTIONS.md to best and worse time/space
@@ -12,13 +69,13 @@
 - Note prompts used to get results for _best and for EXTRA_PAVA_FUNCTIONS.md
 - Add latex base
 
-## 2026-10-15: 2h
+## 2026-10-15: 3h
 ### Description:
 - Prepare meeting
 - Meeting with Pr. Hocking
 - Follow up with TODOs throughout the day
 
-## 2026-10-14: 4h
+## 2026-10-14: 5h
 ### Description:
 - Look at all functions that were described in EXTRA_PAVA_FUNCTIONS.md
 - Condense the above-mentioned md file
@@ -43,7 +100,7 @@
 ![alt text](entries/images/image-81.png)
 ![alt text](entries/images/image-82.png)
 
-## 2026-10-13: 3h
+## 2026-10-13: 4h
 ### Description:
 - Check all $\approx O(N)$ (time complexity-wise) functions against each other to find the best function overall. Add the results here
 - Fix PR comment on PR done yesterday on monotone.iterations
@@ -94,11 +151,11 @@ The plots are always relative to the function that was the lowest at that N, whi
 ![alt text](entries/images/image-65.png)
 ![alt text](entries/images/image-66.png)
 
-## 2026-10-12: 4h
+## 2026-10-12: 5h
 ### Description:
 - Extend table 2 from Busing (2022) with intcox
 
-## 2026-10-11: 4h
+## 2026-10-11: 5h
 ### Description:
 - Add a bunch of extra PAVA functions from Claude research agents
 - Wrap up adding information to README table
@@ -161,24 +218,24 @@ The plots are always relative to the function that was the lowest at that N, whi
 ![alt text](entries/images/image-49.png)
 ![alt text](entries/images/image-62.png)
 
-## 2026-10-10: 1h
+## 2026-10-10: 2h
 ### Description:
 - Continuation d'ajout des résultats des fonctions qu'on avait pas un peu partout (principalement des ajouts au readme)
 - Rouler la validation sur tous les nouveaux algos
 
-## 2026-10-09: 6h
+## 2026-10-09: 8h
 ### Description:
 - Rencontre Pr. Hocking
 - Finalisation d'ajout des fonctions du papier de Busing (2022) que nous n'avions pas
 - Ajout des résultats de ces fonctions un peu partout
 
-## 2026-10-02: 6h
+## 2026-10-02: 8h
 ### Description:
 - Rencontre Pr. Hocking
 - Ajout des heures dans le gestionnaire de projet web
 - Ajout de plusieurs fonctions que nous n'avions pas du papier de Busing (2022)
 
-## 2026-10-01: 3h
+## 2026-10-01: 4h
 ### Description:
 - Present results in FUNCTIONS.md for $O$, $\Omega$ and $\Theta$ for the cases we looked at
 
@@ -224,28 +281,28 @@ The plots are always relative to the function that was the lowest at that N, whi
 #### `stats`
 ![alt text](entries/images/image-37.png)
 
-## 2026-09-29: 4h
+## 2026-09-29: 5h
 ### Description:
 - Wrap up versions
 - Refactor all the "new" code
 - Generate data for multiple functions to see $\Omega(n)$ and $O(n)$ for best and worse-case scenarios
 
-## 2026-09-25: 3h
+## 2026-09-25: 4h
 ### Description:
 - Meeting with Pr. Hocking
 - Continue working on versions and dates for documented VERSIONS.md
 
-## 2026-09-24: 2h
+## 2026-09-24: 3h
 ### Description:
 - Check all documentation and add if complexity is documented for each function
 - Look at monreg, what it is, if it is relevant (it is not, it does not calculate the same thing as the others)
 - Start documenting every version and every year
 
-## 2026-09-23: 2h
+## 2026-09-23: 3h
 ### Description:
 - Reading of paper O(n) 2022, understanding, answering questions and asking others
 
-## 2026-09-18: 6h
+## 2026-09-18: 8h
 ### Description:
 - Wrap up switching over to old function
 - Add all results for old packages, both here and in the README
@@ -282,7 +339,7 @@ Not present here, as intcox was already a deprecated package
 
 ![alt text](entries/images/image-18.png)
 
-## 2026-09-17: 3.5h
+## 2026-09-17: 4h
 ### Description:
 - Add full results after rerunning everything
 - Add installation instructions for pre-2022 packages
@@ -315,11 +372,11 @@ Not present here, as intcox was already a deprecated package
 `stats/directlabels/monotone/smacof`
 ![alt text](entries/images/image-17.png)
 
-## 2026-09-16: 1.5h
+## 2026-09-16: 2h
 ### Description:
 - Start checking if all functions return correct results
 
-## 2026-09-15: 2h
+## 2026-09-15: 3h
 ### Description:
 - Work on project plan
 - Add questions to do to TODO.md
@@ -329,11 +386,11 @@ Not present here, as intcox was already a deprecated package
 ### `isotone`
 ![alt text](entries/images/image-9.png)
 
-## 2026-09-11: 1h
+## 2026-09-11: 2h
 ### Description:
 - Rencontre avec Pr. Hocking (jaser du mandat de projet et questions overall que j'avais)
 
-## 2026-09-09: 7h
+## 2026-09-09: 8h
 ### Description:
 - Wrap up mandat de projet
 - Add `SAGx` to cir/iso/clue extraction - last one that is dead simple, others will be slightly more complicated
@@ -362,7 +419,7 @@ Not present here, as intcox was already a deprecated package
 ### `scipy` and `sklearn`
 ![alt text](entries/images/image-8.png)
 
-## 2026-09-08: 3h
+## 2026-09-08: 4h
 ### Description:
 - Add weights and bounds to all columns in table
 - Add `cir`, `iso`, as well as `clue` PAVA functions results
@@ -370,7 +427,7 @@ Not present here, as intcox was already a deprecated package
 ### Annex:
 ![alt text](entries/images/image-1.png)
 
-## 2026-09-07: 4h
+## 2026-09-07: 5h
 ### Description:
 - Implement mirror for GitHub
 - Implement partitioning, template for adding functions, reproducibility
@@ -379,19 +436,19 @@ Not present here, as intcox was already a deprecated package
 ### Annex:
 ![alt text](entries/images/image.png)
 
-## 2026-09-04: 2h
+## 2026-09-04: 3h
 ### Description:
 - Continuing adding links to table
 - Meeting with Pr. Hocking
 
-## 2026-09-02: 3h
+## 2026-09-02: 4h
 ### Description:
 - Completion of the "contrat d'equipe"
 - Work on the "mandat d'equipe"
 - Initialization of the repository and CI for journalization
 - Start looking at code, start putting links to functions
 
-## 2026-08-01: 20h
+## 2026-08-01: 30h
 ### Description:
 - Choosing project
 - Meetings with Pr. Hocking

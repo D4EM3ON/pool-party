@@ -9,9 +9,15 @@
 - [ ] Faire analyse théorique de mémoire pour les meilleures fonctions
 
 
-- [ ] Wrap up data in _best, add iterations (maybe under _iterations?), for the best functions
 
 - [ ] Faire le rapport
+
+## Todo monotone.iterations
+
+- [ ] register all _iterations functions in init.c
+- [ ] add tests for all _iterations functions
+
+- [ ] Once all is done, add iterations (maybe under _iterations?), for the best functions
 
 
 # Completed
@@ -71,3 +77,15 @@
 - [x] Remove comparison to baseline in _best, take the 5 best and plot them
 
 - [x] Augmenter table 2 Busing avec les auxiliary floats/integers de tout le monde qui ne sont pas dedans et qui sont parmi les plus efficaces (mettons le top 3-4 qui sortent partout dans _best)
+
+## Done monotone.iterations
+- [x] monotoneC_iterations doesn't count first merge
+- [x] fix off-by-one over-run in pooled_pava_iterations (iterations_vec not shifted to 1-indexing)
+- [x] fix off-by-one over-run in monotoneC_iterations (iterations_vec not shifted to 1-indexing)
+- [x] fix off-by-one over-run in iso_pava_iterations
+- [x] add iterations to fitm_iterations
+- [x] add iterations to wmrmnh_iterations
+- [x] add iterations to amalgm_iterations
+- [x] add iterations to pav_iterations
+- [x] add iterations to isoreg_iterations (always 0, TODO in code)
+- [x] add iterations to iso_pava_iterations (always 0, TODO in code)
