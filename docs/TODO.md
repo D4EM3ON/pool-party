@@ -10,7 +10,6 @@
 
 
 
-- [ ] Faire le rapport
 
 ## Todo monotone.iterations
 
@@ -18,6 +17,9 @@
 - [ ] add tests for all _iterations functions
 
 - [ ] Once all is done, add iterations (maybe under _iterations?), for the best functions
+
+## Todo report
+- [ ] add into documentation in the github that we analyzed functions that were available on github, but did not add them to the paper for conciseness
 
 
 # Completed

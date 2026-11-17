@@ -1,0 +1,20 @@
+\begin{thebibliography}{2}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Busing(2022)]{busing2022}
+F.~M. T.~A. Busing.
+\newblock Monotone regression: A simple and fast o(n) pava implementation.
+\newblock \emph{Journal of Statistical Software, Code Snippets}, 102\penalty0 (1), 2022.
+\newblock \doi{10.18637/jss.v102.c01}.
+
+\bibitem[Jan~de Leeuw(2009)]{mair2009}
+P.~M. Jan~de Leeuw, Kurt~Hornik.
+\newblock Isotone optimization in r: Pool-adjacent-violators algorithm (pava) and active set methods.
+\newblock \emph{Journal of Statistical Software}, 32\penalty0 (5), 2009.
+\newblock \doi{10.18637/jss.v032.i05}.
+
+\end{thebibliography}

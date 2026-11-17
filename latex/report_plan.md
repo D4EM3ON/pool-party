@@ -9,8 +9,10 @@ Quelles informations disponibles avant qu'on entreprenne les démarches:
 - Caractérisation des algos
 - Papier de 2009, pas testé en 2022, même genre de comparaisons pour savoir si un de ces algos convient aussi bien que les autres présentés en 2022
 
+## Abstract
 Parmi tous les codes existants, voici les 2-3 plus efficaces pour utilisation générale, ainsi que 1-2 spécifique si pas celui qui est global
 
+## Analysis
 Pourquoi ecq ces algos sont les plus performants? On voit ici les algos empiriques, mais côté complexité du code théorique, pourquoi sont-ils bien? S'ils ne font pas les mêmes choses, quelles sont les différences? 
 
 Quel critère donne un algorithme efficace? Donner références au papier de 2022. Est-ce qu'on fait des _direct updates_, combien d'extras tableaux faut-il utiliser? Ecq nos résultats sont consistants avec l'analyse théorique, et l'analyse qu'il a fait?
@@ -30,6 +32,6 @@ Liste:
 3. Montrer table de comparaison augmentée qu'on a (Table 2 Busing)
 4. dans les résultats: FUNCTIONS.md
 
-10. En annexe: version des fonctions qu'on a utilisés
+5.  En annexe: version des fonctions qu'on a utilisés
 
 À mettre en note que Scikit-Learn appelle Scipy, et scipy appelle monotone (mettre source qui le mentionne)

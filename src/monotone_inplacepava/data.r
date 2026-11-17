@@ -4,4 +4,4 @@ package_names <- "monotone_inplacepava"
 isotonic_functions <- list(
   inplacepava = function(x) monotone::legacy(x, number = 11)
 )
-make_data(package_names, isotonic_functions)
+make_data(package_names, isotonic_functions, max_n = 10^10)
