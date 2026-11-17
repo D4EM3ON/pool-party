@@ -1,12 +1,33 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 160 h (59.3 %)
+## Total hours currently worked : 177 h (65.6 %)
 
-## Total hours worked this week : 2 h
+## Total hours worked this week : 4 h
+
+## 2026-11-17: 4h
+### Description:
+- Work on report:
+  - remove graphic
+  - 
+
+## 2026-11-13: 4h
+### Description:
+- Pass through all $O(N\log N)$ functions we had to truly see if they were $O(N)$ or really $O(N\log N)$
+- Continue report
+- Rencontre Pr. Hocking
+
+## 2026-11-12: 4h
+### Description:
+- Continue report
+- Start rerunning functions
+
+## 2026-11-11: 5h
+### Description:
+- Add functions, data used, start on results for report
 
 ## 2026-11-10: 2h
 ### Description:
-- Work on report
+- Work on report (mainly background, references)
 
 ## 2026-11-08: 1h
 ### Description:
