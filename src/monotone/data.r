@@ -6,4 +6,6 @@ isotonic_functions <- list(
   monotone = monotone::monotone
 )
 
-make_data(package_names, isotonic_functions, max_n = 10^10)
+make_data(
+  package_names, isotonic_functions, max_n = 10^8.4, keep_result = FALSE
+)

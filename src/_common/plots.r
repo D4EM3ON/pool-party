@@ -2,7 +2,7 @@ library(data.table)
 library(ggplot2)
 library(glue)
 
-make_references <- function(ares, ref_exclude = "_legacy") {
+make_references <- function(ares, ref_exclude = "_legacy", fun_exclude = c()) {
   rfuns <- list(
     N = function(x) log10(x),
     "N^2" = function(x) 2 * log10(x),
@@ -14,6 +14,7 @@ make_references <- function(ares, ref_exclude = "_legacy") {
       !grepl(ref_exclude, expr.name)
     ]
   }
+  rfuns <- rfuns[!names(rfuns) %in% fun_exclude]
   atime::references_best(ares_ref, rfuns)
 }
 
@@ -27,7 +28,11 @@ make_pred_plot <- function(aref, file, seconds = 0.1, kilobytes = 1000) {
   apred
 }
 
-make_plots <- function(package_names, ref_exclude = "_legacy") {
+make_plots <- function(
+  package_names,
+  ref_exclude = "_legacy",
+  fun_exclude = c()
+) {
   figure_path <- glue("src/{package_names}/figures")
 
   atime::atime
@@ -46,7 +51,7 @@ make_plots <- function(package_names, ref_exclude = "_legacy") {
   )
   dev.off()
 
-  aref <- make_references(ares, ref_exclude)
+  aref <- make_references(ares, ref_exclude, fun_exclude)
   png(
     glue("{figure_path}/figure-ref.png"),
     width = 12,
