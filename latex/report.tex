@@ -259,7 +259,6 @@ A function that is fast on one kind of data can therefore be slow on another, an
 Validation here was done against \texttt{quadprog::solve.QP()}. We assume it to be the source of truth, and most results (all except the errors noted in the previous section) match this function's results. As\\ \texttt{quadrpog::solve.QP()} is quite slow, it does not test all the values of the functions, but we assume if the first few thousand results are equal, the next ones will be as well. These results are equal up to a tolerance of approximately $1.5\times10^{-8}$ (as we use \href{https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/all.equal}{all.equal} to compare).
 
 % TOOD JUSTIN: Mention that scipy and scikit learn use the same C code (see if corresponds to R)
-% TODO JUSITN: add table 2 busing with only our O(N) functions, adding everything that was not previously there
 % TODO JUSTIN: add graphique with one line linear, one line quadratic, one line cubic, with like quadprog, stats, monotone::monotone
 % TODO JUSTIN: add graphique with like 5 best, after doing table 2 busing, choose the 5 best, plot them, compare them (figure pred)
 
@@ -316,6 +315,41 @@ Two of these functions are not implementations of PAVA: \texttt{quadprog::solve.
         $^{*}$ Not a PAVA implementation: uses dynamic programming.
 
         $^{**}$ Both implementations give wrong results on some data, see Section~\ref{sec:errors}.
+    }
+\end{table}
+
+\subsubsection{Implementation details of the linear functions}
+
+Table~\ref{tab:busing-extended} extends Table 2 of \citet{busing2022monotone}, which describes the implementation details of each function, and is restricted here to the functions that are linear in both space and time on every dataset. The functions above the middle rule were already described in \citet{busing2022monotone}, and their rows are taken from that paper. The functions below it are the ones we added.
+
+\begin{table}[H]
+    \centering
+    \setlength{\tabcolsep}{3.5pt}
+    \rowcolors{3}{gray!12}{white}
+    \begin{tabular}{@{}lcccccccc@{}}
+        \toprule
+        & & & & \multicolumn{2}{c}{Auxiliary} & Direct & \multicolumn{2}{c}{Checks} \\
+        Function & Year & Language & Weights & Floats & Integers & updates & Forward & Backward \\
+        \midrule
+        \texttt{monotone::legacy(1)} & 1964 & Fortran & Yes & $n$ & $n$ & No & 1 & $k$ \\
+        \texttt{fdrtool::monoreg()} & 2010 & C & Yes & $2n$ & $n$ & No & 0 & $k$ \\
+        \texttt{monotone::legacy(9)} & 2013 & Python & Yes & $2n$ & $n$ & No & 0 & $k$ \\
+        \texttt{monotone::legacy(11)} & 2016 & Python & Yes & -- & $n$ & No & 1 & $k$ \\
+        \texttt{UniIsoRegression::reg\_1d()} & 2017 & C++ & Yes & $3n$ & $2n$ & No & 0 & $k$ \\
+        \texttt{monotone::monotone()} & 2019 & C & Yes & -- & $n$ & No & $k$ & $k$ \\
+        \midrule
+        \texttt{intcox:::intcox.pavaC()} & 2007 & C & Yes & $2n$ & $n$ & No & 0 & $k$ \\
+        \texttt{directlabels::isoreg\_dp()} & 2026 & C++ & No & $n$ & $n$ & No & 0 & $k$ \\
+        \texttt{logcondens::isoMean()} & 2006 & R & Yes & $2n$ & $n$ & No & 0 & $k$ \\
+        \texttt{orthoMTL::nnmaxheap\_C()} & 2026 & R & No & $n$ & $n$ & No & 0 & $k$ \\
+        \texttt{sffdr::monoSmooth\_pava()} & 2026 & C++ & No & $2n$ & $n$ & No & 0 & $k$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{\centering Implementation details of the functions that are linear in space and time on every dataset, extending Table 2 of \citet{busing2022monotone}. Functions above the middle rule are from that table, functions below it are our additions.}
+    \label{tab:busing-extended}
+    \captionsetup{font=footnotesize}
+    \caption*{
+        The columns and notation are the ones of \citet{busing2022monotone}. Year and language are those of the original implementation.
     }
 \end{table}
 
