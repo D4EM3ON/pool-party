@@ -1,14 +1,21 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 177 h (65.6 %)
+## Total hours currently worked : 181 h (67.0 %)
 
-## Total hours worked this week : 4 h
+## Total hours worked this week : 8 h
 
-## 2026-11-17: 4h
+## 2026-11-19: 4h
 ### Description:
-- Work on report:
-  - remove graphic
-  - 
+- Rerun orthomtl with 0.1.1, add instructions from CRAN, uncomment it everywhere it used to be commented out
+- Work on report
+
+## 2026-11-18: 2h
+### Description:
+- Work on report
+
+## 2026-11-17: 2h
+### Description:
+- Work on report
 
 ## 2026-11-13: 4h
 ### Description:
