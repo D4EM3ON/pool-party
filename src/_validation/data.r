@@ -30,11 +30,10 @@ isotonic_functions <- list(
   monotone_linearpava = function(x) monotone::legacy(x, number = 10),
   monotone_pav = function(x) monotone::legacy(x, number = 4),
   monotone_pooledpava = function(x) monotone::legacy(x, number = 9),
-  # Removed, as it produces an error as mentioned in README.md
-  # orthomtl = function(x) {
-  #   shift <- min(x) - 1
-  #   rev(orthoMTL::nnmaxheap_C(rev(x) - shift)) + shift
-  # },
+  orthomtl = function(x) {
+    shift <- min(x) - 1
+    rev(orthoMTL::nnmaxheap_C(rev(x) - shift)) + shift
+  },
   sagx = SAGx::pava,
   sandwich = function(x, w) {
     fit <- sandwich::pava.blocks(x)

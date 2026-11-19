@@ -10,14 +10,15 @@
 | `isotone::gpava()` | $N$ | $N^2$ | $N$ | $N^2$ |
 | `jbkpava()` | $N$ | $N$ | $N$ | $N$ |
 | `logcondens::isoMean()` | $N$ | $N$ | $N$ | $N$ |
-| `monotone::monotone()` | $N$ | $N\log N$ | $N$ | $N\log N$ |
+| `monotone::monotone()` | $N$ | $N$ | $N$ | $N$ |
 | `monotone::legacy(number = 3)` (`amalgm()`) | $N$ | $N$ | $N$ | $N^2$ |
 | `monotone::legacy(number = 1)` (`fitm()`) | $N$ | $N$ | $N$ | $N$ |
-| `monotone::legacy(number = 11)` (`inplace_pava()`) | $N$ | $N\log N$ | $N$ | $N\log N$ |
+| `monotone::legacy(number = 11)` (`inplace_pava()`) | $N$ | $N$ | $N$ | $N$ |
 | `monotone::legacy(number = 10)` (`linear_pava()`) | $N$ | $N$ | $N$ | $N^2$ |
 | `monotone::legacy(number = 4)` (`pav()`) | $N$ | $N$ | $N$ | $N^2$ |
 | `monotone::legacy(number = 9)` (`pooled_pava()`) | $N$ | $N$ | $N$ | $N$ |
 | `orthoMTL::nnmaxheap_C()` | $N$ | $N$ | $N$ | $N$ |
+| `quadprog::solve.QP()` | $N^2$ | $N^2$ | $N^3$ | $N^3$ |
 | `SAGx::pava()` | $N$ | $N^2$ | $N$ | $N^2$ |
 | `sandwich::pava.blocks()` | $N$ | $N^2$ | $N$ | $N^2$ |
 | `sffdr::monoSmooth_pava()` | $N$ | $N$ | $N$ | $N$ |
@@ -26,5 +27,5 @@
 | `spsurvey::isotonic()` | $N$ | $N^2$ | $N$ | $N^2$ |
 | `stats::isoreg()` | $N$ | $N$ | $N$ | $N^2$ |
 | `TabICL2:::.pava_single()` | $N$ | $N$ | $N$ | $N$ |
-| `toxstats:::pava()` | $N$ | $N$ | $N$ | $N\log N$ |
+| `toxstats:::pava()` | $N$ | $N$ | $N$ | $N$ |
 | `UniIsoRegression::reg_1d()` | $N$ | $N$ | $N$ | $N$ |

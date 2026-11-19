@@ -19,7 +19,7 @@
 | R | C | [`monotone::legacy(number = 4)` (`pav()`)][monotone-doc] | [2021-2022][monotone-date] | yes | no | no |
 | R | C | [`monotone::legacy(number = 9)` (`pooled_pava()`)][monotone-doc] | [2021-2022][monotone-date] | yes | no | no |
 | R | C | [`monotone::monotone()`][monotone-doc] | [2021-2022][monotone-date] | yes | no | no |
-| R | R | [`orthoMTL::nnmaxheap_C()`](https://github.com/Novartis/orthoMTL/blob/HEAD/R/nnmaxheap.R) | [2026](https://github.com/Novartis/orthoMTL/commits/48f81621cb16c6b798444adb233e2a0d5f148910/R/nnmaxheap.R) | no | no | no |
+| R | R | [`orthoMTL::nnmaxheap_C()`](https://github.com/Novartis/orthoMTL/blob/HEAD/R/nnmaxheap.R) | [2026](https://cran.r-project.org/web/packages/orthoMTL/index.html) | no | no | no |
 | Python | Python | [`sklearn.isotonic.isotonic_regression`](https://scikit-learn.org/stable/modules/generated/sklearn.isotonic.isotonic_regression.html) | [2020-2025](https://github.com/scikit-learn/scikit-learn/commits/afe5bcd80ce17fd8ca88c33beb17534bd36423bc/sklearn/isotonic.py) | yes | yes | no |
 | Python | C | [`scipy.optimize.isotonic_regression`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.isotonic_regression.html) | [2023-2024](https://github.com/scipy/scipy/commits/v1.18.0/scipy/optimize/_isotonic.py) | yes | no | yes |
 | R | R | [`SAGx::pava()`](https://bioconductor.org/about/removed-packages/) | 2005–2006\*\* | yes | no | no |
@@ -47,9 +47,6 @@ NA in complexities column means either the function was not available pre-2021, 
 - Both `UniIsoRegression::reg_1d` and `monotone::legacy(number = 13)` (the latter being supposed to be an implementation of the earlier under the `monotone` package) have errors. See them in action under [`src/_validation/error-visualisation.r`](src/_validation/error-visualisation.r)
   - The original seems to count the first element twice whenever a pooled block reaches the start of the vector. This seems to be corrected in the `monotone` package, but makes the original wrong whenever a pooled block reaches the first element.
   - The legacy version initializes a vector with all zeros (`mean_vec`), and never sets it out to what it is supposed to be originally (`x`). This causes values that are already in order, in some cases, to be pooled together, becoming wrong whenever the data has values that should not be ppoled.
-- `orthoMTL::nnmaxheap_C()` on version 0.1.0 gives wrong results whenever a pooled block has a single element, even on data that is already in order: `nnmaxheap_C(c(3, 2, 1))` returns `3 3 3`, and its own documented example `nnmaxheap_C(c(5, 3, 3, 1))` returns `5 5 5 1` instead of being unchanged.
-  - The PAVA pass itself is correct; the bug is in the final loop that expands the blocks: `for (j in (i + 1):location[i])`. For a single-element block, `location[i] == i`, so `(i + 1):i` counts down to `c(i + 1, i)` instead of being empty, and overwrites the start of the next block with the current value. Using `seq.int(i + 1, length.out = location[i] - i)` would fix it.
-  - This was reported in [orthoMTL#12](https://github.com/Novartis/orthoMTL/issues/12) and is fixed in [v0.1.1](https://github.com/Novartis/orthoMTL/releases/tag/v0.1.1) (2026-10-22). Our results use the version before the fix (commit `dc91503`).
 
 
 We assume `quadprog::solve.QP` to be the source of truth here. For all of its results, all functions in all packages have (within approximately $1.5\times 10^{-8}$) the same results.

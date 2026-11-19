@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99e (TeX Live 2026)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: report.aux
+The style file: abbrvnat.bst
+Database file #1: refs.bib
+Warning--empty year in animint2
+You've used 8 entries,
+            2773 wiz_defined-function locations,
+            649 strings with 6334 characters,
+and the built_in function-call counts, 4041 in all, are:
+= -- 342
+> -- 324
+< -- 4
++ -- 110
+- -- 102
+* -- 360
+:= -- 663
+add.period$ -- 28
+call.type$ -- 8
+change.case$ -- 54
+chr.to.int$ -- 8
+cite$ -- 17
+duplicate$ -- 152
+empty$ -- 255
+format.name$ -- 112
+if$ -- 798
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 4
+newline$ -- 52
+num.names$ -- 32
+pop$ -- 104
+preamble$ -- 1
+purify$ -- 50
+quote$ -- 0
+skip$ -- 127
+stack$ -- 0
+substring$ -- 85
+swap$ -- 12
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 88
+warning$ -- 1
+while$ -- 31
+width$ -- 0
+write$ -- 115
+(There was 1 warning)

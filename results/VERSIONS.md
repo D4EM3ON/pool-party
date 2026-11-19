@@ -14,7 +14,7 @@
 | `logcondens::isoMean()` | 2.1.9 | 2026-04-26 |
 | `monotone::legacy()` | 0.1.2 | 2022-05-25 |
 | `monotone::monotone()` | 0.1.2 | 2022-05-25 |
-| `orthoMTL::nnmaxheap_C()`\*\*\* | 0.1.0 | 2026-08-07 |
+| `orthoMTL::nnmaxheap_C()` | 0.1.1 | 2026-10-19 |
 | `quadprog::solve.QP()` | 1.5-8 | 2019-11-20 |
 | `SAGx::pava()` | 1.64.0 | 2020-10-27 |
 | `sandwich::pava.blocks()` | 3.1-3 | 2026-08-03 |
@@ -33,4 +33,4 @@
 
 \*\* Vendored code (copied 2026-10-09), not a package, so there is no version: `density_friendly_pava()` is from [maxdan94/Density-Friendly](https://github.com/maxdan94/Density-Friendly/blob/master/exactDF.cpp) and `jbkpava()` from [rpubs.com/deleeuw/262795](https://rpubs.com/deleeuw/262795).
 
-\*\*\* GitHub only, not on CRAN: the date is the one of the installed commit (orthoMTL `dc91503`, TabICL2 `c1fee55`, toxstats `4bc579a`).
+\*\*\* GitHub only, not on CRAN: the date is the one of the installed commit (TabICL2 `c1fee55`, toxstats `4bc579a`).

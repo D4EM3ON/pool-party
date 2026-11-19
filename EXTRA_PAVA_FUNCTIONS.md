@@ -11,7 +11,7 @@ R and Python functions implementing PAVA that are **not** already in the [README
 | C++ | `sffdr::monoSmooth_pava()` | no | CRAN, 2024–2026 | [src/monoSmooth.cpp](https://github.com/cran/sffdr/blob/HEAD/src/monoSmooth.cpp) | Non-increasing, by stratum: negate in and out, one group |
 | R | [open-AIMS/toxstats](https://github.com/open-AIMS/toxstats) internal `pava` (`R/smooth.R`) | yes | GitHub only | [R/smooth.R](https://github.com/open-AIMS/toxstats/blob/HEAD/R/smooth.R) | Stack-based |
 | R | [cregouby/TabICL2](https://github.com/cregouby/TabICL2) `.pava_single` (`R/quantile_dist.R`) | yes | GitHub only | [R/quantile_dist.R](https://github.com/cregouby/TabICL2/blob/HEAD/R/quantile_dist.R) | |
-| R | [Novartis/orthoMTL](https://github.com/Novartis/orthoMTL) `nnmaxheap_C` | no | GitHub only | [R/nnmaxheap.R](https://github.com/Novartis/orthoMTL/blob/HEAD/R/nnmaxheap.R) | Non-increasing, clipped at 0: reverse and shift above 0 |
+| R | [Novartis/orthoMTL](https://github.com/Novartis/orthoMTL) `nnmaxheap_C` | no | CRAN, 2026 | [R/nnmaxheap.R](https://github.com/Novartis/orthoMTL/blob/HEAD/R/nnmaxheap.R) | Non-increasing, clipped at 0: reverse and shift above 0 |
 
 ## R — not chosen
 

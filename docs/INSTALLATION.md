@@ -158,8 +158,7 @@ remotes::install_github("open-AIMS/toxstats")
 
 #### `orthoMTL`
 ```r
-install.packages("remotes")
-remotes::install_github("Novartis/orthoMTL")
+install.packages("https://cran.r-project.org/src/contrib/orthoMTL_0.1.1.tar.gz")
 ```
 
 #### `sffdr`
