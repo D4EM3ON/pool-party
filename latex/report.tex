@@ -166,9 +166,22 @@ Algorithm~\ref{alg:pava-pos} summarizes the solution method.
 
 \section{Justin}
 
+\subsection{Background}
+
+Many implementations of isotonic regression exist. The goal of this section is to find out which of them are the most efficient, so that the right one is used.
+
+The choice matters, as these implementations do not all perform the same. Some are faster than others on every kind of data, while others are fast on some datasets and slow on others, depending on the structure of the input. Figure~\ref{fig:complexity-worst} illustrates this with three functions, each on the dataset where it is the slowest: \texttt{monotone::monotone()}, which is always linear in time, \texttt{stats::isoreg()}, which is quadratic in time in its worst case, and \texttt{quadprog::solve.QP()}, which is cubic in time. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figure-complexity-worst-ref.png}
+    \caption{\centering Space (top) and time (bottom) of \texttt{monotone::monotone()} on the \textbf{normal} dataset, \texttt{stats::isoreg()} on the \textbf{up} dataset and \texttt{quadprog::solve.QP()} on the \textbf{down} dataset, with reference complexities. Each function is shown on the dataset where it is the slowest.}
+    \label{fig:complexity-worst}
+\end{figure}
+
 \subsection{Algorithms covered}
 
-Table~\ref{tab:complexity} presents all the functions covered, as well as if they were mentioned in either \citet{de2009isotone} or in \citet{busing2022monotone}. For both columns, blank means they were not mentioned in the paper, and for the \citet{busing2022monotone} column, it is filled out with the $O$ time complexity that \cite{busing2022monotone} mentions in his paper for that function.
+Table~\ref{tab:complexity} presents all the functions covered, as well as if they were mentioned in either \citet{de2009isotone} or in \citet{busing2022monotone}. For the \citet{de2009isotone} column, blank means they are not in its table of existing PAVA implementations, and for the \citet{busing2022monotone} column, blank means they were not benchmarked in the paper, and it is otherwise filled out with the $O$ time complexity that \cite{busing2022monotone} mentions in his paper for that function.
 
 Functions that have \texttt{monotone::legacy(k)} in parentheses have an implementation both in the function we mention and in the \texttt{monotone} package. Functions that mention \texttt{monotone::legacy} first, they have no main implementation available in another package.
 
@@ -199,7 +212,7 @@ We used these data-generating functions for the following reasons:
 \begin{itemize}
     \item \textbf{Up-down:} a first half without violations followed by a decreasing second half, to catch algorithms that are slow at reaching back into blocks they had already accepted
     \item \textbf{Up:} usually the best case, as the data is already in order and there are no merges to do
-    \item \textbf{Down:} usually the worst case, as everything is a violation (when you walk forward) and you end up with a single block. For some functions, such as \texttt{stats::isoreg()}, it is instead the best case scenario (as they walk backward)
+    \item \textbf{Down:} usually the worst case, as everything is a violation (when you walk forward) and you end up with a single block. For some functions, such as \texttt{stats::isoreg()}, it is instead the best case scenario (as a single scan forward over the remaining values finds the whole block at once)
     \item \textbf{Cliff:} increasing data with a single very low final value, which forces all existing blocks to merge at once. It was originally meant to catch algorithms that could be programmed in an unsafe way, such as \texttt{sandwich::pava.blocks()}, which produces a stack overflow with it starting around N = 2500
     \item \textbf{Zigzag:} a violation at every second value, each resolved locally, which produces many small blocks with tied means
     \item \textbf{Normal:} random, unstructured data, as a stand-in for the average case.
@@ -256,11 +269,11 @@ A function that is fast on one kind of data can therefore be slow on another, an
 
 \subsubsection{Results summary}
 
-Validation here was done against \texttt{quadprog::solve.QP()}. We assume it to be the source of truth, and most results (all except the errors noted in the previous section) match this function's results. As\\ \texttt{quadrpog::solve.QP()} is quite slow, it does not test all the values of the functions, but we assume if the first few thousand results are equal, the next ones will be as well. These results are equal up to a tolerance of approximately $1.5\times10^{-8}$ (as we use \href{https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/all.equal}{all.equal} to compare).
+Validation here was done against \texttt{quadprog::solve.QP()}. We assume it to be the source of truth, and most results (all except the errors noted in the previous section) match this function's results. As\\ \texttt{quadrpog::solve.QP()} is quite slow, it only reaches sizes up to $N \approx 600$ within the time limit, so the functions are not compared on larger sizes, but we assume that if the results are equal up to that size, the next ones will be as well. These results are equal up to a tolerance of approximately $1.5\times10^{-8}$ (as we use \href{https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/all.equal}{all.equal} to compare).
 
 % TOOD JUSTIN: Mention that scipy and scikit learn use the same C code (see if corresponds to R)
-% TODO JUSTIN: add graphique with one line linear, one line quadratic, one line cubic, with like quadprog, stats, monotone::monotone
-% TODO JUSTIN: add graphique with like 5 best, after doing table 2 busing, choose the 5 best, plot them, compare them (figure pred)
+% TODO JUSTIN: analyze the table 4: why is directlabels better for time compared to monotone? why is it better in space, and why is UniIsoRegression the best there?
+
 
 Table~\ref{tab:complexity} shows the empirical worst-case space and time complexity of every function. The best cases are not shown, as they were all $O(N)$ in both space and time, with the exception of \texttt{quadprog::solve.QP()}, whose best case is the same as its worst case: $O(N^2)$ space and $O(N^3)$ time. The functions are separated into four categories, by worst case: cubic time and quadratic space (\texttt{quadprog::solve.QP()}), quadratic time and space, quadratic time and linear space, and linear time and space. These results are consistent with \citet{busing2022monotone}: every function reported there as $O(N^2)$ is quadratic in time in our results, and every function reported as $O(N)$ is linear.
 
@@ -281,17 +294,17 @@ Two of these functions are not implementations of PAVA: \texttt{quadprog::solve.
         \texttt{isotone::gpava()} & & & $N^2$ & $N^2$ \\
         \texttt{SAGx::pava()} & yes & & $N^2$ & $N^2$ \\
         \texttt{sandwich::pava.blocks()} & yes & & $N^2$ & $N^2$ \\
-        \texttt{smacof:::pavasmacof()} (\texttt{monotone::legacy(2)}) & yes & & $N^2$ & $N^2$ \\
+        \texttt{smacof:::pavasmacof()} & yes & & $N^2$ & $N^2$ \\
         \texttt{spsurvey::isotonic()} (\texttt{monotone::legacy(7)}) & & $N^2$ & $N^2$ & $N^2$ \\
         \midrule
         \texttt{Iso::pava()} (\texttt{monotone::legacy(6)}) & yes & $N^2$ & $N$ & $N^2$ \\
         \texttt{monotone::legacy(3)} (\texttt{amalgm()}) & & $N^2$ & $N$ & $N^2$ \\
         \texttt{monotone::legacy(10)} (\texttt{linear\_pava()}) & & $N^2$ & $N$ & $N^2$ \\
         \texttt{monotone::legacy(4)} (\texttt{pav()}) & & $N^2$ & $N$ & $N^2$ \\
-        \texttt{smacof:::wmonreg()} & & $N^2$ & $N$ & $N^2$ \\
+        \texttt{smacof:::wmonreg()} (\texttt{monotone::legacy(2)}) & & $N^2$ & $N$ & $N^2$ \\
         \texttt{stats::isoreg()} (\texttt{monotone::legacy(5)}) & yes & $N^2$ & $N$ & $N^2$ \\
         \midrule
-        \texttt{directlabels::isoreg\_dp()}$^{*}$ & & & $N$ & $N$ \\
+        \texttt{directlabels::isoreg\_dp()}$^{1}$ & & & $N$ & $N$ \\
         \texttt{fdrtool::monoreg()} (\texttt{monotone::legacy(8)}) & yes & $N$ & $N$ & $N$ \\
         \texttt{intcox:::intcox.pavaC()} & yes & & $N$ & $N$ \\
         \texttt{logcondens::isoMean()} & yes & & $N$ & $N$ \\
@@ -301,7 +314,7 @@ Two of these functions are not implementations of PAVA: \texttt{quadprog::solve.
         \texttt{monotone::monotone()} & & $N$ & $N$ & $N$ \\
         \texttt{orthoMTL::nnmaxheap\_C()} & & & $N$ & $N$ \\
         \texttt{sffdr::monoSmooth\_pava()} & & & $N$ & $N$ \\
-        \texttt{UniIsoRegression::reg\_1d()} (\texttt{monotone::legacy(13)})$^{**}$ & & $N$ & $N$ & $N$ \\
+        \texttt{UniIsoRegression::reg\_1d()} (\texttt{monotone::legacy(13)})$^{2}$ & & $N$ & $N$ & $N$ \\
         \bottomrule
     \end{tabular}
     \caption{\centering Functions benchmarked, whether they are mentioned in \citet{de2009isotone} (de Leeuw) and \citet{busing2022monotone} (Busing), and their empirical worst-case space and time complexity, in $O$ notation.}
@@ -310,11 +323,11 @@ Two of these functions are not implementations of PAVA: \texttt{quadprog::solve.
     \caption*{
         \texttt{monotone::legacy(k)} stands for \texttt{monotone::legacy(number = k)}.
 
-        In both "Mentioned in" columns, blank means the function is not mentioned in the paper. The Busing column gives the $O$ time complexity that \citet{busing2022monotone} reports for the function.
+        In the de Leeuw column, blank means the function is not in the table of existing PAVA implementations of \citet{de2009isotone}. The Busing column gives the $O$ time complexity that \citet{busing2022monotone} reports for the function, and blank means the function is not benchmarked there.
 
-        $^{*}$ Not a PAVA implementation: uses dynamic programming.
+        $^{1}$ Not a PAVA implementation: uses dynamic programming.
 
-        $^{**}$ Both implementations give wrong results on some data, see Section~\ref{sec:errors}.
+        $^{2}$ Both implementations give wrong results on some data, see Section~\ref{sec:errors}.
     }
 \end{table}
 
@@ -350,6 +363,53 @@ Table~\ref{tab:busing-extended} extends Table 2 of \citet{busing2022monotone}, w
     \captionsetup{font=footnotesize}
     \caption*{
         The columns and notation are the ones of \citet{busing2022monotone}. Year and language are those of the original implementation.
+    }
+\end{table}
+
+\subsubsection{Detailed results of the linear functions}
+
+The next table presents the detailed results of the linear functions in terms of time and space efficiency across the different datasets. The top part of the table shows the largest $N$ each function can handle in 0.01 seconds, while the bottom part shows the largest $N$ each function can handle in 1000 kilobytes of memory. A bigger value indicates higher values reached for that time/space limit, and is therefore better.
+
+\begin{table}[H]
+    \centering
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{@{}lrrrrrrr@{}}
+        \toprule
+        Function & Up-down & Up & Down & Cliff & Zigzag & Normal & Overall \\
+        \midrule
+        \multicolumn{8}{@{}l}{\textit{Time: largest $N$ in 0.01 seconds}} \\
+        \texttt{directlabels::isoreg\_dp()} & 1\,173\,062 & 1\,248\,456 & 1\,127\,296 & 1\,237\,254 & 1\,181\,064 & 592\,468 & 1\,134\,320 \\
+        \texttt{monotone::monotone()} & 1\,088\,443 & 831\,072 & 1\,117\,097 & 868\,239 & 1\,340\,264 & 740\,372 & 899\,679 \\
+        \texttt{monotone::legacy(9)} & 874\,635 & 910\,364 & 847\,003 & 871\,077 & 1\,018\,625 & 651\,280 & 848\,317 \\
+        \texttt{monotone::legacy(11)} & 1\,030\,726 & 796\,246 & 862\,149 & 804\,354 & 885\,495 & 663\,028 & 812\,134 \\
+        \texttt{monotone::legacy(1)} & 878\,456 & 822\,510 & 882\,108 & 781\,234 & 807\,983 & 619\,838 & 784\,908 \\
+        \texttt{UniIsoRegression::reg\_1d()} & 731\,565 & 807\,091 & 680\,620 & 780\,763 & 749\,107 & 388\,160 & 716\,092 \\
+        \texttt{sffdr::monoSmooth\_pava()} & 701\,603 & 748\,955 & 750\,867 & 671\,677 & 811\,459 & 375\,610 & 702\,261 \\
+        \texttt{intcox:::intcox.pavaC()} & 789\,379 & 1\,032\,303 & 619\,944 & 505\,736 & 856\,178 & 352\,012 & 609\,144 \\
+        \texttt{fdrtool::monoreg()} & 393\,802 & 431\,020 & 390\,837 & 345\,352 & 436\,695 & 280\,765 & 367\,229 \\
+        \texttt{orthoMTL::nnmaxheap\_C()} & 27\,424 & 29\,518 & 31\,916 & 22\,942 & 26\,999 & 26\,223 & 27\,336 \\
+        \texttt{logcondens::isoMean()} & 12\,365 & 15\,558 & 14\,325 & 11\,547 & 12\,423 & 10\,971 & 12\,698 \\
+        \midrule
+        \multicolumn{8}{@{}l}{\textit{Space: largest $N$ in 1000 kilobytes}} \\
+        \texttt{directlabels::isoreg\_dp()} & 51\,194 & 36\,565 & 51\,193 & 51\,193 & 51\,193 & 51\,193 & 47\,993 \\
+        \texttt{monotone::monotone()} & 42\,662 & 31\,995 & 42\,661 & 42\,661 & 42\,661 & 42\,661 & 40\,416 \\
+        \texttt{monotone::legacy(9)} & 42\,662 & 31\,995 & 42\,661 & 42\,661 & 42\,661 & 42\,661 & 40\,416 \\
+        \texttt{monotone::legacy(11)} & 42\,662 & 31\,995 & 42\,661 & 42\,661 & 42\,661 & 42\,661 & 40\,416 \\
+        \texttt{monotone::legacy(1)} & 42\,662 & 31\,995 & 42\,661 & 42\,661 & 42\,661 & 42\,661 & 40\,416 \\
+        \texttt{UniIsoRegression::reg\_1d()} & 63\,995 & 42\,661 & 63\,573 & 63\,995 & 63\,995 & 63\,995 & 59\,072 \\
+        \texttt{sffdr::monoSmooth\_pava()} & 31\,994 & 25\,592 & 31\,993 & 31\,993 & 31\,993 & 31\,993 & 30\,713 \\
+        \texttt{intcox:::intcox.pavaC()} & 14\,217 & 12\,794 & 13\,764 & 14\,216 & 14\,216 & 14\,216 & 13\,885 \\
+        \texttt{fdrtool::monoreg()} & 12\,185 & 12\,184 & 12\,184 & 12\,184 & 12\,184 & 12\,184 & 12\,184 \\
+        \texttt{orthoMTL::nnmaxheap\_C()} & 23\,903 & 23\,266 & 23\,266 & 23\,266 & 23\,266 & 23\,258 & 23\,368 \\
+        \texttt{logcondens::isoMean()} & 23\,267 & 23\,266 & 23\,266 & 23\,266 & 23\,266 & 23\,266 & 23\,266 \\
+        \bottomrule
+    \end{tabular}
+    \caption{\centering Largest $N$ that each function of Table~\ref{tab:busing-extended} can process in 0.01 seconds (top) and in 1000 kilobytes (bottom), on every dataset of Table~\ref{tab:generators}. Both blocks are sorted by the overall $N$ in 0.01 seconds.}
+    \label{tab:best-n}
+    \captionsetup{font=footnotesize}
+    \caption*{
+        Overall is computed on the average of the six datasets at each $N$, and is not the average of the six columns.
     }
 \end{table}
 
