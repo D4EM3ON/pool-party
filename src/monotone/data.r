@@ -7,5 +7,5 @@ isotonic_functions <- list(
 )
 
 make_data(
-  package_names, isotonic_functions, max_n = 10^8.4, keep_result = FALSE
+  package_names, isotonic_functions, max_n = 10^7, keep_result = FALSE
 )

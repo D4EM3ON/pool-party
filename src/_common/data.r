@@ -16,8 +16,12 @@ data_list <- list(
   cliff = function(n) {
     c(seq_len(n - 1), -n^2)
   },
-  zigzag = function(n) {
-    rep_len(c(1, 0), n)
+  labels = function(n) {
+    target <- sort(runif(n, 0, 2 * n))
+    b_lo <- 0
+    h_vec <- rep(0.5, n)
+    l_vec <- cumsum(c(b_lo, h_vec[-n]) + h_vec)
+    target - l_vec
   },
   normal = function(n) rnorm(n)
 )

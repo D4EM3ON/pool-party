@@ -30,7 +30,7 @@ data_list <- list(
   up = 1:n,
   down = n:1,
   cliff = c(seq_len(n - 1), -n^2),
-  zigzag = rep_len(c(1, 0), n),
+  labels = sort(runif(n, 0, 2 * n)) - cumsum(c(0, rep(0.5, n - 1)) + 0.5),
   normal = rnorm(n)
 )
 results <- data.frame(

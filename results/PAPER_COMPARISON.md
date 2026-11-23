@@ -72,6 +72,8 @@ Memory-wise, the original implementation takes up less memory than the legacy ve
 | `monotone()` | 2019 | C | Yes | - | $n$ | No | $k$ | $k$ |
 | `intcox()` | 2007 | C | Yes | $2n$ | $n$ | No | 0 | $k$ |
 | `isoreg_dp()` | 2026 | C++ | No | $n$ | $n$ | No | 0 | $k$ |
-| `isoMean()` (`logcondens`) | 2006 | R | Yes | $2n$ | $n$ | No | 0 | $k$ |
-| `nnmaxheap_C()` (`orthoMTL`) | 2026 | R | No | $n$ | $n$ | No | 0 | $k$ |
+| `isoMean()` (`logcondens`)\* | 2006 | R | Yes | $3n$ | - | No | 0 | $k$ |
+| `nnmaxheap_C()` (`orthoMTL`)\* | 2026 | R | No | $2n$ | - | No | 0 | $k$ |
 | `monoSmooth_pava()` (`sffdr`) | 2026 | C++ | No | $2n$ | $n$ | No | 0 | $k$ |
+
+\* For these two R functions, $n$ of the auxiliary floats hold block indices, as their index vectors are stored as doubles in R.
