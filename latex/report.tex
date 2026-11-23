@@ -14,12 +14,16 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{float}
+
 \title{Isotonic Regression for Label Position Optimization}
 \author{Toby Hocking}
 \date{Nov 2026}
 
 \DeclareMathOperator*{\argmin}{arg\, min} 
-\DeclareMathOperator*{\argmax}{arg\, max} 
+\DeclareMathOperator*{\argmax}{arg\, max}
+
+\emergencystretch=1em
+
 \begin{document}
 
 \maketitle
@@ -269,11 +273,9 @@ A function that is fast on one kind of data can therefore be slow on another, an
 
 \subsubsection{Results summary}
 
-Validation here was done against \texttt{quadprog::solve.QP()}. We assume it to be the source of truth, and most results (all except the errors noted in the previous section) match this function's results. As\\ \texttt{quadrpog::solve.QP()} is quite slow, it only reaches sizes up to $N \approx 600$ within the time limit, so the functions are not compared on larger sizes, but we assume that if the results are equal up to that size, the next ones will be as well. These results are equal up to a tolerance of approximately $1.5\times10^{-8}$ (as we use \href{https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/all.equal}{all.equal} to compare).
+Validation here was done against \texttt{quadprog::solve.QP()}. We assume it to be the source of truth, and most results (all except the errors noted in the previous section) match this function's results. As \texttt{quadprog::\allowbreak solve.QP()} is quite slow, it only reaches sizes up to $N \approx 600$ within the time limit, so the functions are not compared on larger sizes, but we assume that if the results are equal up to that size, the next ones will be as well. These results are equal up to a tolerance of approximately $1.5\times10^{-8}$ (as we use \href{https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/all.equal}{all.equal} to compare).
 
 % TOOD JUSTIN: Mention that scipy and scikit learn use the same C code (see if corresponds to R)
-% TODO JUSTIN: analyze the table 4: why is directlabels better for time compared to monotone? why is it better in space, and why is UniIsoRegression the best there?
-
 
 Table~\ref{tab:complexity} shows the empirical worst-case space and time complexity of every function. The best cases are not shown, as they were all $O(N)$ in both space and time, with the exception of \texttt{quadprog::solve.QP()}, whose best case is the same as its worst case: $O(N^2)$ space and $O(N^3)$ time. The functions are separated into four categories, by worst case: cubic time and quadratic space (\texttt{quadprog::solve.QP()}), quadratic time and space, quadratic time and linear space, and linear time and space. These results are consistent with \citet{busing2022monotone}: every function reported there as $O(N^2)$ is quadratic in time in our results, and every function reported as $O(N)$ is linear.
 
@@ -362,13 +364,14 @@ Table~\ref{tab:busing-extended} extends Table 2 of \citet{busing2022monotone}, w
     \label{tab:busing-extended}
     \captionsetup{font=footnotesize}
     \caption*{
-        The columns and notation are the ones of \citet{busing2022monotone}. Year and language are those of the original implementation.
+        The columns and notation are the ones of \citet{busing2022monotone}. Year and language are those of the original implementation. All \texttt{monotone::legacy} functions are however now implemented in C.
     }
 \end{table}
 
 \subsubsection{Detailed results of the linear functions}
 
 The next table presents the detailed results of the linear functions in terms of time and space efficiency across the different datasets. The top part of the table shows the largest $N$ each function can handle in 0.01 seconds, while the bottom part shows the largest $N$ each function can handle in 1000 kilobytes of memory. A bigger value indicates higher values reached for that time/space limit, and is therefore better.
+% TODO JUSTIN: Make this table run 10x and aggregate the average here, as it varies from run to run
 
 \begin{table}[H]
     \centering
@@ -412,6 +415,15 @@ The next table presents the detailed results of the linear functions in terms of
         Overall is computed on the average of the six datasets at each $N$, and is not the average of the six columns.
     }
 \end{table}
+
+% Here, we see that the best overall performance in terms of time is achieved by \texttt{directlabels::\allowbreak isoreg\_dp()} (performed best under all but two datasets), while the best performance in terms of space is achieved by \texttt{UniIsoRegression::reg\_1d()}.
+
+% It is interesting to note that under the \textbf{zigzag} dataset, \texttt{monotone::monotone()} was the best in time, while under the \textbf{normal} dataset, \texttt{monotone::monotone()} was the best, while \texttt{monotone::legacy(1)}, \texttt{monotone::\allowbreak legacy(9)} and \texttt{monotone::legacy(11)} performed worse than the best but still better than the overall best.
+
+% It is also interesting that \texttt{UniIsoRegression::reg\_1d()} performs best in terms of space across all datasets. This seems particular, as we can see in our Table~\ref{tab:busing-extended} that it has the highest amount of both auxiliary floats and integers. This would seem to indicate that 
+
+
+% TODO JUSTIN: analyze the table 4: why is directlabels better for time compared to monotone? why is it better in space, and why is UniIsoRegression the best there?
 
 \appendix
 \subsection{Appendix}

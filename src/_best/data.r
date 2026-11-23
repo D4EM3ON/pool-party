@@ -23,4 +23,10 @@ isotonic_functions <- list(
   }
 )
 
-make_data(package_names, isotonic_functions, add_n = 1, keep_result = FALSE)
+make_data(
+  package_names,
+  isotonic_functions,
+  add_n = 1,
+  keep_result = FALSE,
+  reps = 10
+)
