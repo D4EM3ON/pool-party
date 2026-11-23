@@ -1,8 +1,17 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 183 h (67.8 %)
+## Total hours currently worked : 190 h (70.4 %)
 
-## Total hours worked this week : 10 h
+## Total hours worked this week : 0 h
+
+## 2026-11-22: 3h
+### Description:
+- Working on report
+
+## 2026-11-20: 4h
+### Description:
+- Rencontre Pr. Hocking
+- Work on report
 
 ## 2026-11-19: 6h
 ### Description:
