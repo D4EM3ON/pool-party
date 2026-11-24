@@ -211,7 +211,7 @@ We used these data-generating functions for the following reasons:
     \item \textbf{Up:} usually the best case, as the data is already in order and there are no merges to do
     \item \textbf{Down:} usually the worst case, as everything is a violation (when you walk forward) and you end up with a single block. For some functions, such as \texttt{stats::isoreg()}, it is instead the best case scenario (as a single scan forward over the remaining values finds the whole block at once)
     \item \textbf{Cliff:} increasing data with a single very low final value, which forces all existing blocks to merge at once. It was originally meant to catch algorithms that could be programmed in an unsafe way, such as \texttt{sandwich::pava.blocks()}, which produces a stack overflow with it starting around N = 2500
-    \item \textbf{Labels:} the data of the label position problem, as given to PAVA in Algorithm~\ref{alg:pava-pos}. The target positions $t_1\leq\cdots\leq t_n$ are drawn uniformly between $0$ and $2n$ and sorted, and $L = \texttt{cumsum}(\underline B+h_1, h_1+h_2, \dots, h_{n-1}+h_n)$ as in Algorithm~\ref{alg:pava-pos}, with $\underline B = 0$ and half sizes $h_i = 0.5$ (in \textsf{R}, \verb|L <- cumsum(c(0, h[-n]) + h)| with \verb|h <- rep(0.5, n)|). It represents the kind of data PAVA is used on for label positions
+    \item \textbf{Labels:} the data of the label position problem, as given to PAVA in Algorithm~\ref{alg:pava-pos}. The target positions $t_1\leq\cdots\leq t_n$ are drawn uniformly between $0$ and $2n$ and sorted, and $L = \texttt{cumsum}(\allowbreak\underline B+h_1, h_1+h_2, \dots, h_{n-1}+h_n)$ as in Algorithm~\ref{alg:pava-pos}, with $\underline B = 0$ and half sizes $h_i = 0.5$ (in \textsf{R}, \verb|L <- cumsum(c(0, h[-n]) + h)| with \verb|h <- rep(0.5, n)|). It represents the kind of data PAVA is used on for label positions
     \item \textbf{Normal:} random, unstructured data, as a stand-in for the average case.
 \end{itemize}
 
@@ -354,7 +354,6 @@ We use the notation of \citet{busing2022monotone} for the Checks columns, which 
 
 The next table presents the detailed results of the linear functions in terms of time efficiency across the different datasets. The table shows the largest $N$ each function can handle in 0.01 seconds. A bigger value indicates higher values reached for that time limit, and is therefore better.
 
-% TODO JUSTIN: Make this table run 10x and aggregate the average here, as it varies from run to run
 
 \begin{table}[H]
     \centering
@@ -365,24 +364,26 @@ The next table presents the detailed results of the linear functions in terms of
         \toprule
         Function & Up-down & Up & Down & Cliff & Labels & Normal & Overall \\
         \midrule
-        \texttt{directlabels::isoreg\_dp()} & 1\,173\,062 & 1\,248\,456 & 1\,127\,296 & 1\,237\,254 & & 592\,468 & 1\,134\,320 \\
-        \texttt{monotone::monotone()} & 1\,088\,443 & 831\,072 & 1\,117\,097 & 868\,239 & & 740\,372 & 899\,679 \\
-        \texttt{pooled\_pava()} & 874\,635 & 910\,364 & 847\,003 & 871\,077 & & 651\,280 & 848\,317 \\
-        \texttt{inplace\_pava()} & 1\,030\,726 & 796\,246 & 862\,149 & 804\,354 & & 663\,028 & 812\,134 \\
-        \texttt{fitm()} & 878\,456 & 822\,510 & 882\,108 & 781\,234 & & 619\,838 & 784\,908 \\
-        \texttt{UniIsoRegression::reg\_1d()} & 731\,565 & 807\,091 & 680\,620 & 780\,763 & & 388\,160 & 716\,092 \\
-        \texttt{sffdr::monoSmooth\_pava()} & 701\,603 & 748\,955 & 750\,867 & 671\,677 & & 375\,610 & 702\,261 \\
-        \texttt{intcox:::intcox.pavaC()} & 789\,379 & 1\,032\,303 & 619\,944 & 505\,736 & & 352\,012 & 609\,144 \\
-        \texttt{fdrtool::monoreg()} & 393\,802 & 431\,020 & 390\,837 & 345\,352 & & 280\,765 & 367\,229 \\
-        \texttt{orthoMTL::nnmaxheap\_C()} & 27\,424 & 29\,518 & 31\,916 & 22\,942 & & 26\,223 & 27\,336 \\
-        \texttt{logcondens::isoMean()} & 12\,365 & 15\,558 & 14\,325 & 11\,547 & & 10\,971 & 12\,698 \\
+        \texttt{monotone::monotone()} & 1\,929\,945 & 1\,534\,842 & 1\,952\,577 & 1\,542\,706 & 996\,947 & 1\,024\,057 & 1\,392\,069 \\
+        \texttt{directlabels::isoreg\_dp()} & 1\,686\,815 & 2\,253\,015 & 1\,259\,505 & 2\,193\,766 & 879\,336 & 868\,857 & 1\,307\,752 \\
+        \texttt{inplace\_pava()} & 1\,474\,811 & 1\,410\,348 & 1\,829\,000 & 922\,221 & 862\,008 & 837\,268 & 1\,106\,941 \\
+        \texttt{pooled\_pava()} & 1\,103\,497 & 1\,395\,036 & 1\,002\,321 & 906\,779 & 844\,420 & 742\,022 & 967\,278 \\
+        \texttt{fitm()} & 1\,125\,739 & 1\,044\,331 & 1\,288\,748 & 942\,603 & 636\,529 & 668\,539 & 889\,109 \\
+        \texttt{sffdr::monoSmooth\_pava()} & 980\,471 & 1\,202\,880 & 931\,630 & 804\,683 & 685\,888 & 633\,504 & 836\,717 \\
+        \texttt{UniIsoRegression::reg\_1d()} & 777\,454 & 782\,021 & 752\,684 & 733\,254 & 630\,078 & 632\,224 & 713\,749 \\
+        \texttt{intcox:::intcox.pavaC()} & 732\,237 & 758\,318 & 703\,510 & 647\,388 & 553\,534 & 525\,241 & 647\,289 \\
+        \texttt{fdrtool::monoreg()} & 511\,954 & 546\,349 & 506\,419 & 452\,107 & 421\,946 & 404\,969 & 468\,687 \\
+        \texttt{orthoMTL::nnmaxheap\_C()} & 57\,365 & 60\,022 & 68\,140 & 52\,625 & 50\,808 & 54\,270 & 56\,700 \\
+        \texttt{logcondens::isoMean()} & 21\,674 & 29\,501 & 27\,649 & 20\,109 & 23\,066 & 19\,356 & 23\,014 \\
         \bottomrule
     \end{tabular}
-    \caption{\centering Largest $N$ that each function of Table~\ref{tab:busing-extended} can process in 0.01 seconds, on every dataset of Table~\ref{tab:generators}. Both blocks are sorted by the overall $N$}
+    \caption{\centering Largest $N$ that each function of Table~\ref{tab:busing-extended} can process in 0.01 seconds, on every dataset of Table~\ref{tab:generators}. Functions are sorted by the overall $N$, with the best at the top.}
     \label{tab:best-n}
     \captionsetup{font=footnotesize}
     \caption*{
         Overall is computed on the average of the six datasets at each $N$, and is not the average of the six columns.
+
+        Times are averaged over 10 runs.
     }
 \end{table}
 
