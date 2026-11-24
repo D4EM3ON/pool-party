@@ -1,8 +1,12 @@
 # Journal entries for the Pool Party project
 
-## Total hours currently worked : 190 h (70.4 %)
+## Total hours currently worked : 192 h (71.1 %)
 
-## Total hours worked this week : 0 h
+## Total hours worked this week : 2 h
+
+## 2026-11-24: 2h
+### Description:
+- Continue working on report
 
 ## 2026-11-22: 3h
 ### Description:
