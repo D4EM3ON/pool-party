@@ -12,24 +12,16 @@ F.~M. Busing.
 
 \bibitem[De~Leeuw et~al.(2009)De~Leeuw, Hornik, and Mair]{de2009isotone}
 J.~De~Leeuw, K.~Hornik, and P.~Mair.
-\newblock Isotone optimization in r: pool-adjacent-violators algorithm (pava)
-  and active set methods.
-\newblock \emph{Journal of statistical software}, 32\penalty0 (1):\penalty0
-  1--24, 2009.
+\newblock Isotone optimization in r: pool-adjacent-violators algorithm (pava) and active set methods.
+\newblock \emph{Journal of statistical software}, 32\penalty0 (1):\penalty0 1--24, 2009.
 
 \bibitem[Goldfarb and Idnani(1983)]{goldfarb1983numerically}
 D.~Goldfarb and A.~Idnani.
-\newblock A numerically stable dual method for solving strictly convex
-  quadratic programs.
-\newblock \emph{Mathematical programming}, 27\penalty0 (1):\penalty0 1--33,
-  1983.
+\newblock A numerically stable dual method for solving strictly convex quadratic programs.
+\newblock \emph{Mathematical programming}, 27\penalty0 (1):\penalty0 1--33, 1983.
 
-\bibitem[Hocking et~al.()Hocking, Wickham, Chang, Lewin-Koh, Maechler, Prium,
-  VanderPlas, Sievert, Ferris, Cai, Khan, Kumar, Singh, Fei, Chen, Deodhar, and
-  Agarwal]{animint2}
-T.~Hocking, H.~Wickham, W.~Chang, N.~Lewin-Koh, M.~Maechler, R.~Prium,
-  S.~VanderPlas, C.~Sievert, K.~Ferris, J.~Cai, F.~Khan, V.~Kumar, H.~Singh,
-  Y.~Fei, J.~Chen, S.~Deodhar, and S.~Agarwal.
+\bibitem[Hocking et~al.()Hocking, Wickham, Chang, Lewin-Koh, Maechler, Prium, VanderPlas, Sievert, Ferris, Cai, Khan, Kumar, Singh, Fei, Chen, Deodhar, and Agarwal]{animint2}
+T.~Hocking, H.~Wickham, W.~Chang, N.~Lewin-Koh, M.~Maechler, R.~Prium, S.~VanderPlas, C.~Sievert, K.~Ferris, J.~Cai, F.~Khan, V.~Kumar, H.~Singh, Y.~Fei, J.~Chen, S.~Deodhar, and S.~Agarwal.
 \newblock \emph{animint2: Animated Interactive Grammar of Graphics}.
 \newblock URL \url{https://animint.github.io/animint2}.
 \newblock R package version 2026.4.28.
@@ -46,17 +38,14 @@ T.~D. Hocking.
 \newblock R Foundation for Statistical Computing, Vienna, Austria, 2026.
 \newblock URL \url{https://www.R-project.org/}.
 
-\bibitem[Sievert et~al.(2019)Sievert, VanderPlas, Cai, Ferris, Khan, and
-  Hocking]{Sievert2019jcgs}
+\bibitem[Sievert et~al.(2019)Sievert, VanderPlas, Cai, Ferris, Khan, and Hocking]{Sievert2019jcgs}
 C.~Sievert, S.~VanderPlas, J.~Cai, K.~Ferris, F.~U.~F. Khan, and T.~D. Hocking.
 \newblock Extending ggplot2 for linked and animated web graphics.
-\newblock \emph{Journal of Computational and Graphical Statistics}, 28\penalty0
-  (2):\penalty0 299--308, 2019.
+\newblock \emph{Journal of Computational and Graphical Statistics}, 28\penalty0 (2):\penalty0 299--308, 2019.
 
 \bibitem[Turlach et~al.(2019)Turlach, Weingessel, and Moler]{quadprog}
 B.~A. Turlach, A.~Weingessel, and C.~Moler.
-\newblock \emph{quadprog: Functions to Solve Quadratic Programming Problems},
-  2019.
+\newblock \emph{quadprog: Functions to Solve Quadratic Programming Problems}, 2019.
 \newblock URL \url{https://CRAN.R-project.org/package=quadprog}.
 \newblock R package version 1.5-8.
 
